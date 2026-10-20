@@ -372,3 +372,8 @@ IMG = {
     "wireless-presentation-systems-byod": "1756885465373-bce82fd5c944",
     "hotel-banquet-av-checklist": "1726074749981-d017a415d56e",
 }
+
+# Display order requested by the client: 1. Smart Classroom, 2. Video Walls, then the rest.
+_ORDER = ["smart-classroom-solutions", "video-wall-solutions", "boardroom-meeting-room-av-solutions",
+          "auditorium-av-solutions", "av-over-ip-media-distribution", "public-address-pa-systems"]
+SOLUTIONS.sort(key=lambda s: _ORDER.index(s["slug"]))
