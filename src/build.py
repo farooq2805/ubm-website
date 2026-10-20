@@ -134,7 +134,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','{SITE["ga4_id"]}');</script>'''
     gsc = f'<meta name="google-site-verification" content="{SITE["gsc_verification"]}">' if SITE["gsc_verification"] else ""
     ld = "\n".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in (org_schema(),) + tuple(schemas))
-    intro_js = '\n<script>try{if(!sessionStorage.getItem("ubm-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-loading")}catch(_){}</script>' if path == "" else ""
+    intro_js = ""
     wa_msg = "Hi UBM, I'd like to discuss an AV project."
     doc = f'''<!doctype html>
 <html lang="en-IN">
@@ -335,19 +335,23 @@ def build_home():
     reel = [("35336", "LED and video walls", "solutions/video-wall-solutions/"), ("11942", "Stage and auditorium AV", "solutions/auditorium-av-solutions/"), ("32591", "Event sound and lighting", "solutions/auditorium-av-solutions/")]
     reel_js = json.dumps([{"src": f"https://assets.mixkit.co/videos/{v}/{v}-720.mp4", "cap": c, "href": h} for v, c, h in reel])
     body = f'''
-<div class="loader" aria-hidden="true"><div class="loader-in"><img src="assets/img/ubm-logo-trim.png" alt="" width="208" height="45"><span class="loader-year" id="loader-year">1997</span><span class="loader-bar"><i></i></span></div></div>
-<section class="hero hero-video" aria-label="Introduction">
- <video class="hero-bg" id="reel" autoplay muted playsinline preload="metadata" poster="{U(HERO_SLIDES[0][0], 1920)}" data-reel='{e(reel_js)}'><source src="https://assets.mixkit.co/videos/35336/35336-720.mp4" type="video/mp4"></video>
- <div class="wrap">
-  <h1 class="mega"><span>Classrooms, boardrooms</span><span>and halls that</span><span>just work.</span></h1>
-  <p class="lead">India's schools, offices, hotels and venues trust UBM to design, supply, install and service complete AV systems, with Epson, Bose Professional, BenQ, ViewSonic and more. One partner, from first drawing to years after handover.</p>
-  <div class="hero-actions"><a class="btn btn-coral" href="contact/#enquiry">Get a free proposal</a><a class="btn btn-glass" href="https://wa.me/{SITE["whatsapp"]}?text=Hi%20UBM%2C%20I%20need%20help%20with%20an%20AV%20project" target="_blank" rel="noopener">WhatsApp us now</a></div>
-  <div class="quick"><span>What do you need?</span>{"".join(f'<a href="contact/?solution={sl}#enquiry">{n}</a>' for sl, n in [("smart-classroom-solutions", "Smart classroom"), ("video-wall-solutions", "Video wall"), ("boardroom-meeting-room-av-solutions", "Boardroom"), ("auditorium-av-solutions", "Auditorium sound"), ("public-address-pa-systems", "PA system")])}</div>
-  <ul class="trust"><li><b>Since 1997</b> in Mumbai</li><li><b>{len(BRANDS)} global</b> brands</li><li><b>Reply</b> within one working day</li></ul>
+<section class="hero2" aria-label="Introduction"><div class="wrap hero2-grid">
+ <div class="hero2-copy">
+  <p class="pill"><span class="dot"></span>Value-added AV distributor, Mumbai, since 1997</p>
+  <h1>Classrooms, boardrooms and halls that just work.</h1>
+  <p class="lead">UBM designs, supplies, installs and services complete audio-visual systems for India's schools, offices, hotels and venues. One accountable partner, from first drawing to years after handover.</p>
+  <div class="hero-actions"><a class="btn btn-coral" href="contact/#enquiry">Get a free proposal</a><a class="btn btn-ghost" href="https://wa.me/{SITE["whatsapp"]}?text=Hi%20UBM%2C%20I%20need%20help%20with%20an%20AV%20project" target="_blank" rel="noopener">WhatsApp us now</a></div>
+  <div class="quick2"><span>What do you need?</span>{"".join(f'<a href="contact/?solution={sl}#enquiry">{n}</a>' for sl, n in [("smart-classroom-solutions", "Smart classroom"), ("video-wall-solutions", "Video wall"), ("boardroom-meeting-room-av-solutions", "Boardroom"), ("auditorium-av-solutions", "Auditorium sound"), ("public-address-pa-systems", "PA system")])}</div>
+  <div class="brandline"><span>Brands we supply</span><b>Epson</b><b>Bose Professional</b><b>BenQ</b><b>ViewSonic</b><b>ATEN</b><b>TOA</b></div>
  </div>
- <a class="reel-cap" id="reel-cap" href="solutions/video-wall-solutions/"><span class="reel-dot"></span><span id="reel-text">LED and video walls</span></a>
- <a class="scroll-cue" href="#hello" aria-label="Scroll to content"><span></span></a>
-</section>
+ <div class="mosaic" aria-hidden="true">
+  <figure class="m1"><img src="{U(IMG["education"], 900)}" alt="" fetchpriority="high"><figcaption>Smart classrooms</figcaption></figure>
+  <figure class="m2"><img src="{U(IMG["boardroom-meeting-room-av-solutions"], 700)}" alt=""><figcaption>Boardrooms</figcaption></figure>
+  <figure class="m3"><img src="{U(IMG["auditorium-av-solutions"], 700)}" alt=""><figcaption>Auditoriums</figcaption></figure>
+  <div class="float f1"><strong>{years} years</strong><span>of pro AV in India</span></div>
+  <div class="float f2"><span class="ok"></span><div><strong>Proposal in 1 working day</strong><span>Free consultation</span></div></div>
+ </div>
+</div></section>
 
 <section id="hello"><div class="wrap hello">
  <div class="hello-num reveal"><strong>{years}</strong><span>years integrating sound, vision and technology across India</span></div>
