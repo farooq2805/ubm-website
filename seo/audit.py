@@ -98,6 +98,8 @@ def collect(target):
     if target.startswith("http"):
         base = target.rstrip("/")
         locs = re.findall(r"<loc>(.*?)</loc>", fetch(base + "/sitemap.xml"))
+        # sitemap URLs point at production; audit the target host instead (e.g. the GitHub Pages preview)
+        locs = [re.sub(r"^https?://[^/]+", base, u) for u in locs]
         for u in locs:
             try: pages.append((u, fetch(u)))
             except Exception as ex: pages.append((u, f"<title></title><!-- fetch error {ex} -->"))

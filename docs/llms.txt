@@ -1,9 +1,9 @@
-# UBM — Universal Business Machines
+# Universal Business Machines (UBM)
 
 > Mumbai-based value-added distributor of professional audio-visual (pro AV) technology, founded in 1997. Supplies Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA, with design, consultation, installation, maintenance, service and training for dealers, integrators and organisations across India.
 
 - Address: B-101, Sarvodaya Bldg No. 11, Khernagar Service Road, Off Western Express Highway, Bandra (East), Mumbai 400051, India
-- Phone: 022 2647 5639 / 40 · WhatsApp: +91 98202 93108 · Email: connect@ubm.co.in
+- Phone: 022 2647 5639 / 40 · Mobile/WhatsApp: +91 98202 93108 · Email: connect@ubm.co.in, balraj@ubm.co.in
 
 ## Solutions
 - [Smart Classroom Solutions](https://www.ubm.co.in/solutions/smart-classroom-solutions/): A smart classroom combines an interactive display (an interactive flat panel or an interactive projector), a wireless presentation system, classroom audio and a simple control interface so teachers can teach, annotate and share content from any device. UBM designs, supplies and installs complete smart classroom setups for schools, colleges and universities across India using Epson, BenQ and ViewSonic technology.
@@ -32,12 +32,27 @@
 - [TOA](https://www.ubm.co.in/toa/): Public address and commercial audio trusted in buildings worldwide.
 
 ## Guides
+- [LED vs LCD Video Wall: Which Should You Choose?](https://www.ubm.co.in/blog/led-vs-lcd-video-wall/): Choose an LCD video wall for close viewing, control rooms and tighter budgets; choose a fine-pitch LED wall for seamless, very bright, large or irregular canvases such as lobbies, stages and auditoriums.
+- [Video Wall Price in India: 7 Factors That Decide the Cost](https://www.ubm.co.in/blog/video-wall-cost-factors-india/): Video wall cost in India depends on technology (LCD, LED or projection), size, pixel pitch or bezel width, the processor, mounting structure, installation and support. Define the viewing distance and content first to avoid overspending.
 - [Smart Classroom Setup in India: Complete Equipment List & Cost Factors](https://www.ubm.co.in/blog/smart-classroom-setup-guide-india/): A smart classroom needs an interactive display, wireless sharing, clear audio, a document camera, proper mounting and teacher training. Cost is driven mostly by display type and size, room count, audio needs and installation complexity — not by the brand logo.
+- [Laser vs Lamp Projectors: Which Is Better for Schools and Offices?](https://www.ubm.co.in/blog/laser-vs-lamp-projector/): Laser projectors cost more upfront but run for many years without lamp replacements, keep brightness more consistently and turn on instantly — usually the lower total cost for classrooms, offices and auditoriums used daily.
+- [Huddle Room Setup Guide: Small Meeting Rooms That Just Work](https://www.ubm.co.in/blog/huddle-room-setup-guide/): A great huddle room needs a right-sized display, an all-in-one video bar, one-click wireless sharing, basic acoustic treatment and a simple booking panel — standardised across every small room.
 - [Interactive Flat Panel vs Projector: Which Is Right for Your Classroom or Boardroom?](https://www.ubm.co.in/blog/interactive-flat-panel-vs-projector/): Choose an interactive flat panel for bright, small-to-medium rooms that need touch and minimal maintenance. Choose a (laser) projector when you need a large image for a large audience at a lower cost per inch.
+- [Public Address (PA) Systems Explained: Types, Components and Planning](https://www.ubm.co.in/blog/public-address-system-guide/): A public address system uses microphones, mixer-amplifiers and zoned loudspeakers to deliver announcements, background music and emergency messages. Plan it by zones, noise levels and intelligibility — not by wattage alone.
+- [What Is a KVM Switch? Types and How to Choose One](https://www.ubm.co.in/blog/kvm-switch-guide/): A KVM switch lets one keyboard, video display and mouse control multiple computers. Choose desktop KVMs for desks, rackmount KVMs for server racks, extenders for distance and KVM over IP for remote access.
 - [What Is AV over IP? A Practical Guide for Indian Enterprises & Campuses](https://www.ubm.co.in/blog/what-is-av-over-ip/): AV over IP transmits audio, video and control over a standard Ethernet network using encoders and decoders, so any source can reach any display and systems scale simply by adding endpoints.
+- [Wireless Presentation Systems (BYOD): How They Work and Why Every Room Needs One](https://www.ubm.co.in/blog/wireless-presentation-systems-byod/): A wireless presentation system lets anyone share their laptop, tablet or phone screen to the room display in one click, without cables or adapters — the single fastest upgrade for classrooms and meeting rooms.
+- [Hotel Banquet & Ballroom AV Checklist](https://www.ubm.co.in/blog/hotel-banquet-av-checklist/): Hotel ballrooms need even, intelligible sound, bright projection or LED screens, divisible-room audio and video, zoned background music and a control system simple enough for banquet staff.
 - [Boardroom AV & Video Conferencing Setup: A 12-Point Checklist](https://www.ubm.co.in/blog/boardroom-av-video-conferencing-checklist/): Great boardrooms get audio, camera framing, display size, wireless sharing, simple control and ongoing support right — in that order of impact on meeting quality.
 - [Auditorium Sound System Design: What Schools, Colleges & Corporates Should Know](https://www.ubm.co.in/blog/auditorium-sound-system-design-guide/): Auditorium sound should be designed for even coverage and speech intelligibility first, then for music. Integrate projection and control so non-technical staff can run events with presets.
 - [How to Choose a Pro AV Distributor in India: A Guide for Dealers & Integrators](https://www.ubm.co.in/blog/how-to-choose-pro-av-distributor-india/): Pick a distributor for the support behind the products: pre-sales design help, project registration and pricing support, demo access, training, dependable stock and responsive after-sales service.
+
+## Company pages
+- [About UBM](https://www.ubm.co.in/about-us/)
+- [Dealer & integrator programme](https://www.ubm.co.in/dealer-partners/)
+- [Contact](https://www.ubm.co.in/contact/)
+- [FAQ](https://www.ubm.co.in/faq/)
+- [Careers](https://www.ubm.co.in/careers/)
 
 ## Key facts
 - What does UBM do? UBM (Universal Business Machines) is a Mumbai-based value-added distributor of professional audio-visual (pro AV) technology, founded in 1997. UBM supplies brands including Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA, and provides design, consultation, installation, maintenance, service and training.
@@ -45,5 +60,5 @@
 - Who does UBM work with? UBM works with AV dealers, system integrators, consultants and end customers in education, corporate, hospitality, places of worship, stadiums, home theatre and retail.
 - Where is UBM located? UBM is located at B-101, Sarvodaya Building No. 11, Khernagar Service Road, off Western Express Highway, Bandra (East), Mumbai 400051, and serves customers across India.
 - How long has UBM been in business? UBM was founded in 1997 and has more than 25 years of experience in professional AV distribution and solutions.
-- How do I get a quote from UBM? Use the project enquiry form on this website, WhatsApp +91 98202 93108, call 022 2647 5639, or email connect@ubm.co.in. Share your room sizes and requirements and UBM will respond with a proposal.
+- How do I get a quote from UBM? Use the project enquiry form on this website, WhatsApp +91 98202 93108, call 022 2647 5639 or +91 98202 93108, or email connect@ubm.co.in or balraj@ubm.co.in. Share your room sizes and requirements and UBM will respond with a proposal.
 - Can I become a UBM dealer partner? Yes. UBM welcomes AV dealers and system integrators. Visit the Dealer Partners page to apply.
