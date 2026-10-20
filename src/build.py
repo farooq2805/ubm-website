@@ -120,6 +120,7 @@ def nav(r, active):
   <div class="dd"><button type="button">Brands</button><div class="dd-menu">{br}<a href="{r}brands/"><b>All brands →</b></a></div></div>
   {a("dealer-partners/", "Partners", "partners")}
   {a("about-us/", "About", "about")}
+  {a("tools/av-calculators/", "AV Calculators", "tools")}
   {a("blog/", "Blog", "blog")}
   {a("contact/", "Contact", "contact")}
 </nav>'''
@@ -225,6 +226,7 @@ def footer(r):
       <li><a href="tel:{SITE["mobile_tel"]}">Mobile {SITE["mobile_display"]}</a></li>
       <li><a href="mailto:{SITE["email"]}">{SITE["email"]}</a></li>
       <li><a href="mailto:{SITE["email2"]}">{SITE["email2"]}</a></li>
+      <li><a href="{r}tools/av-calculators/">Free AV calculators</a></li>
       <li><a href="{r}careers/">Careers</a> · <a href="{r}faq/">FAQ</a> · <a href="{r}blog/">Blog</a></li></ul></div>
   </div>
   <div class="foot-bottom"><span>© {datetime.date.today().year} Universal Business Machines. All rights reserved. Last updated {TODAY}.</span><span><a href="{r}editorial-policy/">Editorial policy</a> · <a href="{r}privacy-policy/">Privacy policy</a></span><span>Brand names and logos are trademarks of their respective owners.</span></div>
@@ -397,6 +399,11 @@ def build_home():
 <section><div class="wrap">
  <div class="sec-head center"><div><div class="eyebrow">Our services</div><h2>From consultation to long-term support</h2><p class="lead">From the first drawing to years after handover, UBM stays with the project.</p></div></div>
  <div class="grid g3 m-tiles">{svcs}</div>
+</div></section>
+
+<section class="calc-teaser"><div class="wrap teaser-grid">
+ <div><p class="kicker">Free tools</p><h2>Plan your room in 30 seconds</h2><p class="lead">Use the same calculations our AV designers use: screen size, projector lumens, throw distance, LED wall pixel pitch, ceiling speakers and amplifier power.</p><a class="btn btn-blue" href="tools/av-calculators/">Open the AV calculators</a></div>
+ <ul class="teaser-list"><li><a href="tools/av-calculators/#screen">Screen size</a></li><li><a href="tools/av-calculators/#lumens">Projector lumens</a></li><li><a href="tools/av-calculators/#throw">Throw distance</a></li><li><a href="tools/av-calculators/#ledwall">LED wall pixel pitch</a></li><li><a href="tools/av-calculators/#speakers">Ceiling speakers</a></li><li><a href="tools/av-calculators/#amplifier">Amplifier power</a></li></ul>
 </div></section>
 
 <section class="alt"><div class="wrap">
@@ -602,6 +609,77 @@ def build_blog():
         page(path, p["title"] + (" | UBM" if len(p["title"]) <= 59 else ""), p["desc"], body, "blog", schemas=(art, faq_schema(p["faqs"]), crumbs_schema([("Home", ""), ("Blog", "blog/"), (p["title"], path)])), priority="0.7", og_type="article")
 
 
+CALCS = [
+ ("screen", "s", "Screen size", "Display size calculator", "How big should the screen be so the last row can read it?",
+  """<label>Farthest viewer distance (m)<input id="s-dist" type="number" min="1" step="0.5" value="9"></label>
+<label>What will people watch?<select id="s-type"><option value="8">Video and general viewing (8x)</option><option value="6" selected>Presentations and slides (6x)</option><option value="4">Spreadsheets, CAD, fine detail (4x)</option></select></label>
+<label>Aspect ratio<select id="s-ar"><option>16:9</option><option>16:10</option></select></label>""",
+  "Uses the widely used 4-6-8 rule: the farthest viewer should sit no more than 8 times the image height away for video, 6 times for presentations and 4 times for detailed content. Image height = farthest distance ÷ factor; the diagonal follows from the aspect ratio."),
+ ("lumens", "l", "Projector brightness", "Projector lumens calculator", "How many lumens does your room need?",
+  """<label>Screen diagonal (inches)<input id="l-diag" type="number" min="40" step="5" value="120"></label>
+<label>Room lighting<select id="l-amb"><option value="50">Dark room / home theatre</option><option value="120">Dimmed meeting room</option><option value="220" selected>Classroom with lights on</option><option value="350">Bright room with daylight</option></select></label>
+<label>Screen gain<input id="l-gain" type="number" min="0.5" max="3" step="0.1" value="1.0"></label>""",
+  "Lumens = target screen brightness (nits) × screen area (m²) × π ÷ screen gain. Target brightness rises with ambient light. We add 30% headroom so the image stays bright as the light source ages or in eco mode."),
+ ("throw", "t", "Throw distance", "Projector throw distance calculator", "Where should the projector be mounted?",
+  """<label>Image diagonal (inches, 16:9)<input id="t-diag" type="number" min="40" step="5" value="100"></label>
+<label>Throw ratio of the projector<input id="t-ratio" type="number" min="0.2" max="5" step="0.05" value="1.5"></label>""",
+  "Throw distance = throw ratio × image width. The throw ratio is listed in every projector's specifications; zoom lenses give a range. Ultra short throw projectors (below 0.4) sit just above or below the screen."),
+ ("ledwall", "v", "LED video wall", "LED video wall pixel pitch calculator", "What resolution and viewing distance will your LED wall give?",
+  """<label>Wall width (m)<input id="v-w" type="number" min="1" step="0.1" value="4"></label>
+<label>Wall height (m)<input id="v-h" type="number" min="0.5" step="0.1" value="2.25"></label>
+<label>Pixel pitch (mm)<select id="v-pitch"><option>0.9</option><option>1.2</option><option>1.5</option><option selected>1.9</option><option>2.5</option><option>3.9</option><option>4.8</option><option>6</option></select></label>""",
+  "Resolution = wall size ÷ pixel pitch. A common rule of thumb is a minimum viewing distance in metres roughly equal to the pitch in millimetres, with comfortable viewing at about 2.5 to 3.5 times that."),
+ ("speakers", "c", "Ceiling speakers", "Ceiling speaker coverage calculator", "How many ceiling speakers does a room need?",
+  """<label>Room length (m)<input id="c-len" type="number" min="2" step="0.5" value="12"></label>
+<label>Room width (m)<input id="c-wid" type="number" min="2" step="0.5" value="8"></label>
+<label>Ceiling height (m)<input id="c-height" type="number" min="2.2" step="0.1" value="3"></label>
+<label>Listeners are<select id="c-ear"><option value="1.2" selected>Seated (ear at 1.2 m)</option><option value="1.7">Standing (ear at 1.7 m)</option></select></label>
+<label>Speaker dispersion<select id="c-disp"><option value="90" selected>90° (typical ceiling speaker)</option><option value="120">120° (wide dispersion)</option><option value="60">60° (narrow, high ceilings)</option></select></label>
+<label>Coverage quality<select id="c-layout"><option value="1">Economy: edge to edge (background music)</option><option value="0.707" selected>Standard: minimum overlap (paging, speech)</option><option value="0.5">Premium: full overlap (conferencing, critical speech)</option></select></label>""",
+  "Coverage diameter at ear height = 2 × (ceiling height − ear height) × tan(dispersion ÷ 2). Spacing is that diameter for edge-to-edge, 0.707 × for minimum overlap and 0.5 × for full overlap. Speakers = ceil(length ÷ spacing) × ceil(width ÷ spacing)."),
+ ("amplifier", "a", "Amplifier power", "70V / 100V PA amplifier calculator", "What size amplifier does your PA system need?",
+  """<label>Number of speakers<input id="a-n" type="number" min="1" step="1" value="24"></label>
+<label>Tap setting per speaker (W)<select id="a-tap"><option>1.5</option><option>3</option><option selected>6</option><option>10</option><option>15</option><option>30</option></select></label>""",
+  "Total load = number of speakers × tap wattage. Add 25% headroom so the amplifier never runs flat out, then choose the next standard 70V/100V amplifier size, or split into zones for large systems."),
+]
+CALC_FAQS = [
+ ("How do I calculate the right screen size for a room?", "Measure the distance to the farthest viewer. For presentations, divide it by 6 to get the minimum image height; for video use 8 and for detailed content use 4. Then convert the height to a diagonal using the aspect ratio."),
+ ("How many lumens does a classroom projector need?", "It depends on screen size and room light. A 100 to 120-inch screen in a classroom with lights on typically needs several thousand lumens; use the projector brightness calculator above for your exact room."),
+ ("How far should a projector be from the screen?", "Multiply the image width by the projector's throw ratio. For example, a 2.2 m wide image with a 1.5 throw ratio needs the projector about 3.3 m from the screen."),
+ ("What pixel pitch do I need for an LED video wall?", "As a rule of thumb, the minimum viewing distance in metres roughly equals the pixel pitch in millimetres; for comfortable viewing, multiply by 2.5 to 3.5."),
+ ("How many ceiling speakers do I need for my office?", "Work out the coverage circle of each speaker at ear height, choose spacing for the quality you need, and divide the room length and width by that spacing. The ceiling speaker calculator does this for you."),
+ ("Are these calculators accurate enough to buy equipment?", "They give reliable starting points based on standard industry rules. Final designs should account for room acoustics, content, ambient light and product specifications, which UBM checks in a free consultation."),
+]
+
+
+def build_tools():
+    r = rel(2)
+    path = "tools/av-calculators/"
+    tabs = "".join(f'<button type="button" role="tab" aria-selected="{"true" if n == 0 else "false"}" aria-controls="{cid}">{e(tab)}</button>' for n, (cid, k, tab, h, q, form, how) in enumerate(CALCS))
+    blocks = "".join(f'''<section class="calc" id="{cid}" role="tabpanel"{" hidden" if n else ""}>
+ <div class="calc-grid">
+  <form class="calc-form" data-calc="{k}" onsubmit="return false"><h2>{e(h)}</h2><p class="muted">{e(q)}</p>{form}</form>
+  <div class="calc-result"><p class="kicker">Your result</p><div class="res-list" id="{k}-out" aria-live="polite"></div>
+   <a class="btn btn-coral" id="{k}-cta" href="{r}contact/#enquiry">Get a proposal based on this</a>
+   <p class="calc-note">Starting-point estimate based on standard industry rules. A UBM specialist will confirm it for your room.</p></div>
+ </div>
+ <div class="calc-how"><h3>How this is calculated</h3><p>{e(how)}</p></div>
+</section>''' for n, (cid, k, tab, h, q, form, how) in enumerate(CALCS))
+    app = {"@context": "https://schema.org", "@type": "WebApplication", "name": "UBM AV Design Calculators", "url": BASE + "/" + path,
+           "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+           "description": "Free calculators for screen size, projector lumens, throw distance, LED wall pixel pitch, ceiling speaker coverage and PA amplifier power.",
+           "featureList": [c[3] for c in CALCS], "publisher": {"@id": BASE + "/#org"}}
+    body = page_hero(r, [("Tools", path), ("AV calculators", path)], "Free AV design calculators", "The six calculations every AV designer, consultant and buyer makes: screen size, projector brightness, throw distance, LED wall resolution, ceiling speakers and amplifier power. Get an instant answer, then a proposal.", "Tools", actions=False) + f'''
+<section class="calcs"><div class="wrap"><div class="calc-tabs" role="tablist" aria-label="Choose a calculator">{tabs}</div>{blocks}</div></section>
+<section class="alt"><div class="wrap">{faq_block(CALC_FAQS, "AV calculation FAQs")}</div></section>{lead_section(r, "your room, based on these numbers")}'''
+    page(path, "Free AV Calculators: Screen Size, Lumens, Speakers | UBM",
+         "Free AV design calculators: screen size, projector lumens, throw distance, LED wall pixel pitch, ceiling speaker count and PA amplifier power.",
+         body, "tools", schemas=(app, faq_schema(CALC_FAQS), crumbs_schema([("Home", ""), ("AV calculators", path)])), priority="0.9")
+    # make the calculator script load on this page only
+    f = OUT / path / "index.html"
+    f.write_text(f.read_text().replace('<script src="../../assets/js/site.js" defer></script>', '<script src="../../assets/js/site.js" defer></script>\n<script src="../../assets/js/calc.js" defer></script>'))
+
+
 def build_static_pages():
     r = rel(1)
     # About
@@ -733,7 +811,7 @@ def main():
     for p in OUT.iterdir() if OUT.exists() else []:
         if p.name != "assets":
             shutil.rmtree(p) if p.is_dir() else p.unlink()
-    build_home(); build_solutions(); build_industries(); build_brands(); build_blog(); build_static_pages(); build_meta_files()
+    build_home(); build_solutions(); build_industries(); build_brands(); build_blog(); build_static_pages(); build_tools(); build_meta_files()
     print(f"Built {len(pages)} pages into {OUT} ({'production' if PROD else 'staging/noindex'})")
 
 

@@ -638,3 +638,28 @@ a.btn.btn-ghost,.prose a.btn-ghost{color:var(--blue)}
 .keyfacts{grid-template-columns:1fr 1fr}
 .foot-bottom a{color:#c8d5f2}
 @media (max-width:760px){.keyfacts{grid-template-columns:1fr}}
+/* v12 AV calculators */
+.calc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.calc-tabs button{font:700 .92rem var(--sans);padding:11px 18px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer}
+.calc-tabs button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)}
+.calc-form{padding:34px;background:#fff;display:grid;gap:14px;align-content:start}
+.calc-form h2{font-size:1.6rem;margin:0}
+.calc-form label{display:grid;gap:6px}
+.calc-result{padding:34px;background:linear-gradient(150deg,var(--blue-900),var(--blue));color:#dfe8fb;display:flex;flex-direction:column;gap:14px}
+.calc-result .kicker{color:#9fd0ff}
+.res{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.res span{color:#c8d5f2}
+.res strong{color:#fff;font-size:1.15rem;text-align:right}
+.calc-result .btn{align-self:flex-start;background:#fff;color:var(--blue-900) !important;margin-top:8px}
+.calc-note{font-size:.82rem;color:#aebfdc;margin:0}
+.calc-how{margin:22px 0 0;padding:22px 26px;background:var(--sky);border:1px solid var(--line);border-radius:var(--radius)}
+.calc-how h3{font-size:1.05rem;margin-bottom:6px}
+.calc-how p{margin:0;color:var(--ink-2)}
+.calc-teaser{background:var(--blue-50)}
+.teaser-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.teaser-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.teaser-list a{display:block;background:#fff;border:1px solid var(--blue-100);border-radius:14px;padding:16px 18px;font-weight:700;color:var(--blue-900);text-decoration:none}
+.teaser-list a:hover{border-color:var(--blue);color:var(--blue)}
+@media (max-width:900px){.calc-grid,.teaser-grid{grid-template-columns:1fr}.calc-form,.calc-result{padding:22px}.calc-tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 18px;padding:0 16px 4px}.calc-tabs button{flex:none}}
+section.calc{padding:0}section.calcs{padding-top:44px}
