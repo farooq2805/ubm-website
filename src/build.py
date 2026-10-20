@@ -53,7 +53,7 @@ def md(text, r):
             t = line_html[3:]; out.append(f'<h2 id="{slugify(line[3:])}">{t}</h2>')
         elif line.startswith("### "):
             out.append(f"<h3>{line_html[4:]}</h3>")
-        elif line.startswith("&gt; "):
+        elif line.startswith("> "):
             out.append(f'<p class="pull">{line_html[5:]}</p>')
         else:
             out.append(f"<p>{line_html}</p>")
@@ -134,6 +134,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','{SITE["ga4_id"]}');</script>'''
     gsc = f'<meta name="google-site-verification" content="{SITE["gsc_verification"]}">' if SITE["gsc_verification"] else ""
     ld = "\n".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in (org_schema(),) + tuple(schemas))
+    intro_js = '\n<script>try{if(!sessionStorage.getItem("ubm-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-loading")}catch(_){}</script>' if path == "" else ""
     wa_msg = "Hi UBM, I'd like to discuss an AV project."
     doc = f'''<!doctype html>
 <html lang="en-IN">
@@ -147,8 +148,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
 <meta property="og:type" content="{og_type}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{canonical}"><meta property="og:site_name" content="UBM, Universal Business Machines"><meta property="og:locale" content="en_IN">
 <meta property="og:image" content="{BASE}/assets/img/og-image.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0f2c6e">
-<script>try{{if(!sessionStorage.getItem("ubm-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro")}}catch(_){{}}</script>
+<meta name="theme-color" content="#0f2c6e">{intro_js}
 <link rel="icon" href="{r}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -301,7 +301,13 @@ def brand_card(r, b):
 
 
 def post_card(r, p):
-    return f'''<a class="pcard post reveal" href="{r}blog/{p["slug"]}/"><div class="ph"><img src="{U(IMG.get(p["slug"], IMG["blog"]), 900)}" alt="" loading="lazy"><span class="chip">{e(p["cat"])}</span></div><div class="bd"><span class="mono">{p["read"]} min read · {p["date"]}</span><h3 style="margin-top:10px">{e(p["title"])}</h3><p>{e(p["desc"])}</p><span class="link-arrow">Read guide</span></div></a>'''
+    return f'''<a class="pcard post reveal" data-cat="{e(p["cat"])}" href="{r}blog/{p["slug"]}/"><div class="ph"><img src="{U(IMG.get(p["slug"], IMG["blog"]), 900)}" alt="" loading="lazy"><span class="chip">{e(p["cat"])}</span></div><div class="bd"><span class="mono">{p["read"]} min read · {p["date"]}</span><h3 style="margin-top:10px">{e(p["title"])}</h3><p>{e(p["desc"])}</p><span class="link-arrow">Read guide</span></div></a>'''
+
+
+def blog_filters():
+    cats = sorted({p["cat"] for p in POSTS})
+    btns = "".join(f'<button type="button" data-filter="{e(c)}">{e(c)}</button>' for c in cats)
+    return f'<div class="filters" role="toolbar" aria-label="Filter posts by topic"><button type="button" class="on" data-filter="all">All posts</button>{btns}</div>'
 
 
 def marquee(r):
@@ -537,12 +543,12 @@ def build_blog():
     cards = "".join(post_card(r, p) for p in POSTS)
     page("blog/", "AV Blog: Guides for Schools, Offices & Venues in India | UBM",
          "Practical guides on smart classrooms, interactive displays, boardroom AV, AV over IP and auditorium sound from UBM's 25+ years in pro AV.",
-         page_hero(r, [("Blog", "blog/")], "The UBM blog: practical AV guides for India", "Vendor-neutral advice from more than 25 years of designing and supplying AV systems.", "Blog", actions=False) + f'<section><div class="wrap"><div class="grid g3">{cards}</div></div></section>' + hub_extra(*HUBS["blog"]) + cta_band(r), "blog", schemas=(faq_schema(HUBS["blog"][1]), crumbs_schema([("Home", ""), ("Blog", "blog/")])), priority="0.8")
+         page_hero(r, [("Blog", "blog/")], "The UBM blog: practical AV guides for India", "Vendor-neutral advice from more than 25 years of designing and supplying AV systems.", "Blog", actions=False) + f'<section class="blog-hub"><div class="wrap">{blog_filters()}<div class="grid g3 bloglist" id="bloglist">{cards}</div></div></section>' + hub_extra(*HUBS["blog"]) + cta_band(r), "blog", schemas=(faq_schema(HUBS["blog"][1]), crumbs_schema([("Home", ""), ("Blog", "blog/")])), priority="0.8")
     for p in POSTS:
         r = rel(2)
         path = f'blog/{p["slug"]}/'
         toc = "".join(f'<li><a href="#{slugify(h)}">{e(h)}</a></li>' for h in re.findall(r"^## (.+)$", p["body"], re.M))
-        rel_posts = "".join(f'<li><a href="{r}blog/{q["slug"]}/">{e(q["title"])}</a></li>' for q in POSTS if q["slug"] != p["slug"])[:2000]
+        rel_posts = "".join(f'<li><a href="{r}blog/{q["slug"]}/">{e(q["title"])}</a></li>' for q in sorted((q for q in POSTS if q["slug"] != p["slug"]), key=lambda q: q["cat"] != p["cat"])[:5])
         body = page_hero(r, [("Blog", "blog/"), (p["title"], path)], p["title"], p["desc"], f'{p["cat"]} · {p["read"]} min read', actions=False) + f'''
 <section><div class="wrap content">
  <article class="prose">

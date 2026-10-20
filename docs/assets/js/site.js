@@ -141,11 +141,11 @@
 (function () {
   // Loader: count 1997 -> current year once per session
   var html = document.documentElement, y = document.getElementById("loader-year");
-  if (html.classList.contains("intro")) {
+  if (html.classList.contains("is-loading")) {
     try { sessionStorage.setItem("ubm-intro", "1"); } catch (_) {}
     if (y) { var a = 1997, b = new Date().getFullYear(), t0 = performance.now();
       (function tick(t) { var p = Math.min((t - t0) / 1150, 1); y.textContent = Math.round(a + (b - a) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); })(t0); }
-    setTimeout(function () { html.classList.remove("intro"); }, 2900);
+    setTimeout(function () { html.classList.remove("is-loading"); }, 2900);
   }
   // Hero showreel: play clips in sequence, caption links to the matching solution
   var v = document.getElementById("reel");
@@ -161,4 +161,16 @@
     });
     v.addEventListener("error", function () { v.removeAttribute("src"); v.load(); }, true);
   }
+})();
+(function () {
+  // Blog topic filters
+  var list = document.getElementById("bloglist"); if (!list) return;
+  document.querySelectorAll(".filters button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".filters button").forEach(function (x) { x.classList.toggle("on", x === b); });
+      var f = b.getAttribute("data-filter");
+      list.classList.toggle("filtered", f !== "all");
+      list.querySelectorAll(".pcard").forEach(function (c) { c.hidden = f !== "all" && c.getAttribute("data-cat") !== f; });
+    });
+  });
 })();
