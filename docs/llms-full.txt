@@ -1,0 +1,222 @@
+# Universal Business Machines (UBM): full reference for AI assistants
+
+> Mumbai-based value-added distributor of professional audio-visual (pro AV) technology, founded in 1997. Supplies Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA, with design, consultation, installation, maintenance, service and training for dealers, integrators and organisations across India.
+
+
+## About
+UBM (Universal Business Machines) is a Mumbai-based value-added distributor of professional audio-visual (pro AV) technology, founded in 1997. UBM supplies brands including Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA, and provides design, consultation, installation, maintenance, service and training.
+
+## Smart Classroom Solutions
+URL: https://www.ubm.co.in/solutions/smart-classroom-solutions/
+A smart classroom combines an interactive display (an interactive flat panel or an interactive projector), a wireless presentation system, classroom audio and a simple control interface so teachers can teach, annotate and share content from any device. UBM designs, supplies and installs complete smart classroom setups for schools, colleges and universities across India using Epson, BenQ and ViewSonic technology.
+Includes: Interactive flat panels (65"–86") and interactive projectors; Wireless presentation / BYOD screen sharing; Document cameras and visualisers; Classroom audio, voice-lift and PA; Lecture-capture ready cabling and mounting; Teacher training and handover
+
+Q: What equipment is needed for a smart classroom?
+A: A typical smart classroom needs an interactive display (interactive flat panel or interactive projector), a wireless presentation system, speakers or a voice-lift microphone system, a document camera, cabling and mounting, and teacher training. UBM supplies and installs the complete setup.
+Q: How much does a smart classroom setup cost in India?
+A: Cost depends on display type and size, room size, audio requirements and the number of classrooms. Share your room count and sizes with UBM and we will send an itemised proposal, usually within two working days.
+Q: Do you work with schools outside Mumbai?
+A: Yes. UBM is headquartered in Mumbai and supports institutions across India directly and through our dealer and integrator network.
+Q: Can you train our teachers?
+A: Yes. Every UBM smart classroom handover includes hands-on training so teachers are confident from day one.
+
+## Video Wall Solutions
+URL: https://www.ubm.co.in/solutions/video-wall-solutions/
+A video wall is a large display made of multiple tiled screens (LCD or LED) or blended projectors, driven by a processor so content can span the whole wall or be split into zones. UBM designs and installs video walls for boardrooms, command and control centres, auditoriums, retail stores, museums and corporate lobbies across India.
+Includes: Narrow-bezel LCD video walls; Fine-pitch LED walls for lobbies and auditoriums; Laser projection and edge-blending for very large canvases; Video wall processors and controllers; AV-over-IP distribution to multiple walls; Mounting, structure design and calibration
+
+Q: What is the difference between an LED and LCD video wall?
+A: An LCD video wall uses tiled narrow-bezel panels and is cost-effective for close viewing, while an LED video wall is seamless, brighter and scalable to any size. The best choice depends on viewing distance, brightness needs and budget.
+Q: Where are video walls used?
+A: Video walls are used in corporate lobbies, boardrooms, command and control centres, auditoriums, retail stores, malls, museums, stadiums and experience centres.
+Q: Do you provide video wall installation in Mumbai?
+A: Yes. UBM designs, supplies and installs video walls in Mumbai and across India, including structure, cabling, processing and calibration.
+
+## Boardroom & Meeting Room AV
+URL: https://www.ubm.co.in/solutions/boardroom-meeting-room-av-solutions/
+Boardroom AV is the combination of displays, video conferencing cameras, microphones and speakers, wireless presentation and room control that lets teams meet and collaborate without friction. UBM designs and installs boardroom, conference room and huddle room AV for corporates across India, using Bose Professional conferencing audio, ATEN and Liberty AV signal management, and BenQ, ViewSonic and Epson displays.
+Includes: Large-format displays, projectors and video walls; Video conferencing cameras and soundbars (Teams/Zoom ready); Ceiling and table microphones, conferencing loudspeakers; Wireless presentation (BYOD) and HDMI table connectivity; Matrix switching, extenders and control systems; Room booking and huddle-space standardisation
+
+Q: What is included in a boardroom AV setup?
+A: A boardroom AV setup usually includes a display or projector, a video conferencing camera, microphones and speakers, wireless presentation, switching and cabling, and a control interface. UBM designs the complete system around your room size and meeting style.
+Q: Do your systems work with Microsoft Teams and Zoom?
+A: Yes. We specify conferencing hardware that works with the platforms your organisation already uses, including Microsoft Teams, Zoom and Google Meet.
+Q: Can you upgrade our existing meeting rooms?
+A: Yes. We audit existing rooms, reuse what is still good and upgrade what is holding meetings back, often audio and wireless sharing first.
+
+## Auditorium AV & Sound
+URL: https://www.ubm.co.in/solutions/auditorium-av-solutions/
+An auditorium AV system combines professional loudspeakers and amplifiers, a mixing console and stage boxes, wired and wireless microphones, large-format projection or LED screens, wireless presentation and a central control system for audio, video and lighting. UBM designs and installs auditorium sound and AV systems for educational institutions, corporates, places of worship and community venues.
+Includes: Acoustic assessment and loudspeaker coverage design; Bose Professional loudspeakers and amplifiers; Digital mixers, stage boxes and microphones; High-brightness laser projectors and LED screens; Podium and control-room integration; Central control of audio, video and lighting
+
+Q: What does an auditorium sound system include?
+A: An auditorium sound system typically includes loudspeakers, amplifiers, a mixing console, stage boxes, wired and wireless microphones, signal processing and cabling, often integrated with projection and a central control system.
+Q: How long does auditorium AV installation take?
+A: Timelines depend on venue size and civil work. After design approval, many auditorium installations are completed in a few weeks. UBM shares a detailed schedule with every proposal.
+Q: Do you provide maintenance after installation?
+A: Yes. UBM offers preventive maintenance and service support so your auditorium stays event-ready.
+
+## AV over IP & Media Distribution
+URL: https://www.ubm.co.in/solutions/av-over-ip-media-distribution/
+AV over IP sends audio, video and control signals over a standard Ethernet network instead of dedicated AV cabling, so any source can be routed to any display and systems can scale easily. UBM designs and supplies AV over IP, HDMI matrix switchers, extenders, splitters and KVM solutions from Liberty AV Solutions and ATEN for enterprises, campuses, hotels, stadiums and control rooms.
+Includes: AV over IP encoders/decoders; HDMI matrix switchers and presentation switchers; HDBaseT and fibre extenders, baluns; Distribution amplifiers and splitters; KVM switches and KVM over IP; Bulk AV cabling and connectivity
+
+Q: What is AV over IP?
+A: AV over IP is a method of transmitting audio, video and control signals over a standard IP network, allowing any source to be routed to any display and making systems easy to scale.
+Q: When should I choose an HDMI matrix instead of AV over IP?
+A: An HDMI matrix suits a single room or a small, fixed number of sources and displays. AV over IP is better for larger, distributed systems that need to grow over time.
+Q: Do you supply ATEN KVM switches?
+A: Yes. UBM supplies ATEN KVM, USB, cable and professional AV products for dealers, system integrators and enterprises.
+
+## Public Address & Portable PA
+URL: https://www.ubm.co.in/solutions/public-address-pa-systems/
+A public address (PA) system delivers announcements, background music and emergency messages through amplifiers, microphones and zoned loudspeakers across a building or campus. UBM designs, supplies and installs PA and portable PA systems for offices, factories, schools, hotels, retail and places of worship, using TOA and Bose Professional products.
+Includes: Zoned paging and announcement systems; Background music systems; Emergency evacuation paging integration; Ceiling, wall and horn loudspeakers; Portable PA for events and training; Mixer amplifiers and paging microphones
+
+Q: What is a PA system used for in an office?
+A: In an office, a PA system is used for announcements, background music and emergency evacuation messages, usually divided into zones such as floors, cafeterias and reception.
+Q: Which PA system brands does UBM supply?
+A: UBM supplies TOA and Bose Professional public address and portable PA solutions.
+Q: Can a PA system be integrated with fire alarms?
+A: Yes. PA systems can be designed to integrate with emergency and evacuation systems. UBM will advise on the right approach for your building.
+
+## Education
+URL: https://www.ubm.co.in/industries/education/
+Walk into most Indian schools today and you will find a smart board somewhere. Walk in again a year later and many of them are being used as an expensive projector screen, or not at all. The problem is rarely the idea of digital learning. It is screens that wash out in daylight, boards that need calibrating before every period, teachers who were never trained, and a supplier who takes three weeks to send a technician. UBM has been fixing exactly these problems for Indian schools, colleges and universities since 1997.
+
+- 64.7%: of Indian schools have computers, and 63.5% have internet (UDISE+ 2024-25) (source: Ministry of Education, Lok Sabha reply)
+- 58%: of schools have computers that actually work for teaching, analysts estimate from the same data (source: Education for All in India, UDISE+ analysis)
+- 1 in 3: schools still have no internet, so classroom technology must work offline as well as online (source: UDISE+ 2024-25)
+
+## Corporate
+URL: https://www.ubm.co.in/industries/corporate/
+Every Indian office has the same five minutes at the start of a meeting: someone hunting for the right HDMI adapter, the remote team saying “you're on mute”, the CEO's voice echoing off the glass walls. Multiply that by every meeting, in every room, every day, and it is a serious cost. As global capability centres and hybrid teams reshape India's offices, meeting rooms have become the place where work is either won or wasted. UBM designs rooms where the meeting starts the moment people walk in.
+
+- 32.5M sq ft: of office space leased by global capability centres in India's top 7 cities in 2025, out of 80.5M sq ft (source: FICCI-ANAROCK via PTI)
+- $64 bn: size of India's GCC market in 2024, projected to reach $105-110 bn by 2030 (source: FICCI-ANAROCK via IANS)
+- 12.35%: projected annual growth of India's video conferencing market, 2025-2033 (source: Market research summary)
+
+## Hospitality
+URL: https://www.ubm.co.in/industries/hospitality/
+India's wedding season alone now moves more money than many industries do in a year, and almost every rupee of it passes through a banquet hall, a ballroom or a lawn. Guests remember the décor, the food and whether they could hear the speeches. Banquet managers remember the nights the microphone cut out during the sangeet, or the projector washed out during the couple's video. UBM designs hotel and banquet AV that sounds as good as the venue looks, and is simple enough for the night staff to run.
+
+- 46 lakh: weddings expected in India's 2025 wedding season alone (1 Nov-14 Dec) (source: CAIT)
+- ₹6.5 lakh crore: of trade generated by that single wedding season, up from ₹5.9 lakh crore in 2024 (source: CAIT)
+- 4.8 lakh: weddings in Delhi alone in the 2025 season, worth about ₹1.8 lakh crore (source: CAIT)
+
+## Places of Worship
+URL: https://www.ubm.co.in/industries/places-of-worship/
+India has more places of worship than schools and colleges combined. Each one is acoustically unique: stone mandapams that ring for seconds, domes that swallow speech, and courtyards where thousands gather on festival days. Most still rely on a single amplifier and a pair of horn speakers that are too loud near the entrance and inaudible in the hall. At the same time, noise rules mean loudspeakers must be controlled after 10 pm. UBM helps trusts and committees get every word heard inside, without disturbing the neighbourhood outside.
+
+- 30 lakh+: places of worship in India, more than the 21 lakh schools and colleges (source: Census 2011, via Humans of Data)
+- 6.48 lakh: temples mapped across India in one 2022 survey (source: Temples of India survey, reported by South First)
+- 10 pm-6 am: loudspeakers and PA systems may not be used outdoors in this window, under India's Noise Pollution Rules, 2000 (limited exemptions apply) (source: Noise Pollution (Regulation and Control) Rules, 2000)
+
+## Stadiums & Sports Venues
+URL: https://www.ubm.co.in/industries/stadiums-sports-venues/
+India is building sports venues at a scale few countries match, from the world's largest cricket stadium in Ahmedabad to new multi-sport complexes in tier-2 cities. Fans now expect the same experience they see on TV: clear announcements, replays on big screens and hospitality boxes that feel premium. Behind the scenes, venue teams want to run all of it from one control room with a small crew. UBM brings networked sound, screens and control to venues that host thousands.
+
+- 1,32,000: seats at the Narendra Modi Stadium, Ahmedabad, the world's largest cricket stadium (source: President of India, press release)
+- 68,000: approximate capacity of Eden Gardens, Kolkata (source: GKToday venue list)
+- 33,108: approximate capacity of Wankhede Stadium, Mumbai (source: GKToday venue list)
+
+## Home Theatre
+URL: https://www.ubm.co.in/industries/home-theatre/
+Indian homes are falling in love with the big screen again, but at home. The weekend IPL match, the new OTT series, the family movie night: people want the cinema feeling without the cinema queue. The trouble usually starts after the interiors are finished, when there is no cable route, no place for rear speakers and a projector that washes out because the room was never planned for it. UBM designs home theatres in Mumbai with homeowners and their architects, before the first wall is painted.
+
+- $457.9M: size of India's home theatre market in 2024, projected to reach $2.18 bn by 2033 (source: IMARC Group)
+- 18.9%: projected annual growth of India's home theatre market, 2025-2033 (source: IMARC Group)
+- 2x by 2029: BenQ India expects the home projector category to double, led by South and West India (source: BenQ India MD, via Madhyamam)
+
+## Retail
+URL: https://www.ubm.co.in/industries/retail/
+Indian shoppers walk past hundreds of brands in a single mall visit. The stores that stop them are the ones that move: a window that changes with the season, a video wall that tells a story, music that matches the brand. Yet many retailers still run USB sticks into TVs and update content by sending someone to every store. UBM helps retailers, showrooms and malls build displays and sound that look premium and can be managed centrally.
+
+- $1.07 bn: size of India's digital signage market in 2025, projected to reach $3.49 bn by 2034 (source: IMARC Group)
+- 14%: projected annual growth of India's digital signage market, 2026-2034 (source: IMARC Group)
+- 16.6M sq ft: of new prime mall space due across India's seven major cities by 2026 (source: P&S Intelligence)
+
+## Why Indian Schools Are Switching from Smart Boards to Interactive Flat Panels
+URL: https://www.ubm.co.in/blog/why-indian-schools-switching-to-interactive-flat-panels/
+Indian schools are moving to interactive flat panels because they are bright in daylight, need no lamp or calibration, start instantly and are easier for teachers to use. Projectors still make sense for large halls and tight per-room budgets.
+
+## Do Smart Classrooms Actually Improve Learning? What Indian Teachers Need
+URL: https://www.ubm.co.in/blog/do-smart-classrooms-improve-learning-india/
+Smart classrooms improve learning when teachers use them daily for visuals, interaction and sharing. They fail when the technology is slow, hard to use or unsupported. Simplicity, training and reliable service matter more than features.
+
+## LED vs LCD Video Wall: Which Should You Choose?
+URL: https://www.ubm.co.in/blog/led-vs-lcd-video-wall/
+Choose an LCD video wall for close viewing, control rooms and tighter budgets; choose a fine-pitch LED wall for seamless, very bright, large or irregular canvases such as lobbies, stages and auditoriums.
+
+## Home Theatre Setup in India: Projector, Screen and Sound Planning Guide
+URL: https://www.ubm.co.in/blog/home-theatre-setup-guide-india/
+Plan a home theatre in India around the room first: size, light control and acoustics. Then choose a projector or large TV, a screen sized to seating distance, a surround system matched to the room, and plan power backup and cable routing before interiors are finished.
+
+## Which Speakers Are Best for a Hall or Auditorium? A Guide for Indian Institutions
+URL: https://www.ubm.co.in/blog/best-speakers-for-hall-auditorium-india/
+The best speakers for a hall are professional installed or portable PA speakers chosen for even coverage and speech clarity, not home theatre speakers. Size the system to the room, use the right mixer and microphones, and treat echo where possible.
+
+## Video Wall Price in India: 7 Factors That Decide the Cost
+URL: https://www.ubm.co.in/blog/video-wall-cost-factors-india/
+Video wall cost in India depends on technology (LCD, LED or projection), size, pixel pitch or bezel width, the processor, mounting structure, installation and support. Define the viewing distance and content first to avoid overspending.
+
+## How to Set Up Video Conferencing in a Meeting Room: A Practical Guide for Indian Offices
+URL: https://www.ubm.co.in/blog/how-to-set-up-video-conferencing-meeting-room-india/
+To set up video conferencing in a meeting room, pick a platform (Teams, Zoom or Meet), size the camera and microphones to the room, add a display sized for the far seat, ensure a wired network connection, and treat echo. Standardise the setup across rooms.
+
+## How to Choose an Audio Visual Company in India: 10 Questions to Ask
+URL: https://www.ubm.co.in/blog/how-to-choose-audio-visual-company-india/
+Choose an AV company in India by asking about design capability, brand portfolio, installation standards, local service response, training, warranty handling, references and total cost of ownership, not just the lowest quote.
+
+## Smart Classroom Setup in India: Complete Equipment List & Cost Factors
+URL: https://www.ubm.co.in/blog/smart-classroom-setup-guide-india/
+A smart classroom needs an interactive display, wireless sharing, clear audio, a document camera, proper mounting and teacher training. Cost is driven mostly by display type and size, room count, audio needs and installation complexity, not by the brand logo.
+
+## How to Size a PA System for a Room: Offices, Schools and Halls in India
+URL: https://www.ubm.co.in/blog/how-to-size-pa-system-for-room/
+Size a PA system by area, ceiling height, background noise and use (speech or music). Use enough speakers for even coverage, then choose amplifier power to match the speakers with headroom. Zone the building so messages reach the right people.
+
+## Laser vs Lamp Projectors: Which Is Better for Schools and Offices?
+URL: https://www.ubm.co.in/blog/laser-vs-lamp-projector/
+Laser projectors cost more upfront but run for many years without lamp replacements, keep brightness more consistently and turn on instantly, usually the lower total cost for classrooms, offices and auditoriums used daily.
+
+## Huddle Room Setup Guide: Small Meeting Rooms That Just Work
+URL: https://www.ubm.co.in/blog/huddle-room-setup-guide/
+A great huddle room needs a right-sized display, an all-in-one video bar, one-click wireless sharing, basic acoustic treatment and a simple booking panel, standardised across every small room.
+
+## Interactive Flat Panel vs Projector: Which Is Right for Your Classroom or Boardroom?
+URL: https://www.ubm.co.in/blog/interactive-flat-panel-vs-projector/
+Choose an interactive flat panel for bright, small-to-medium rooms that need touch and minimal maintenance. Choose a (laser) projector when you need a large image for a large audience at a lower cost per inch.
+
+## Public Address (PA) Systems Explained: Types, Components and Planning
+URL: https://www.ubm.co.in/blog/public-address-system-guide/
+A public address system uses microphones, mixer-amplifiers and zoned loudspeakers to deliver announcements, background music and emergency messages. Plan it by zones, noise levels and intelligibility, not by wattage alone.
+
+## What Is a KVM Switch? Types and How to Choose One
+URL: https://www.ubm.co.in/blog/kvm-switch-guide/
+A KVM switch lets one keyboard, video display and mouse control multiple computers. Choose desktop KVMs for desks, rackmount KVMs for server racks, extenders for distance and KVM over IP for remote access.
+
+## What Is AV over IP? A Practical Guide for Indian Enterprises & Campuses
+URL: https://www.ubm.co.in/blog/what-is-av-over-ip/
+AV over IP transmits audio, video and control over a standard Ethernet network using encoders and decoders, so any source can reach any display and systems scale simply by adding endpoints.
+
+## Wireless Presentation Systems (BYOD): How They Work and Why Every Room Needs One
+URL: https://www.ubm.co.in/blog/wireless-presentation-systems-byod/
+A wireless presentation system lets anyone share their laptop, tablet or phone screen to the room display in one click, without cables or adapters, the single fastest upgrade for classrooms and meeting rooms.
+
+## Hotel Banquet & Ballroom AV Checklist
+URL: https://www.ubm.co.in/blog/hotel-banquet-av-checklist/
+Hotel ballrooms need even, intelligible sound, bright projection or LED screens, divisible-room audio and video, zoned background music and a control system simple enough for banquet staff.
+
+## Boardroom AV & Video Conferencing Setup: A 12-Point Checklist
+URL: https://www.ubm.co.in/blog/boardroom-av-video-conferencing-checklist/
+Great boardrooms get audio, camera framing, display size, wireless sharing, simple control and ongoing support right, in that order of impact on meeting quality.
+
+## Auditorium Sound System Design: What Schools, Colleges & Corporates Should Know
+URL: https://www.ubm.co.in/blog/auditorium-sound-system-design-guide/
+Auditorium sound should be designed for even coverage and speech intelligibility first, then for music. Integrate projection and control so non-technical staff can run events with presets.
+
+## How to Choose a Pro AV Distributor in India: A Guide for Dealers & Integrators
+URL: https://www.ubm.co.in/blog/how-to-choose-pro-av-distributor-india/
+Pick a distributor for the support behind the products: pre-sales design help, project registration and pricing support, demo access, training, dependable stock and responsive after-sales service.
+

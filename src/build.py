@@ -11,6 +11,7 @@ from blog import POSTS
 from blog_more import MORE_POSTS
 from blog_india import INDIA_POSTS
 from industry_stories import STORIES
+from meta import META
 POSTS = sorted(POSTS + MORE_POSTS + INDIA_POSTS, key=lambda p: p["date"], reverse=True)
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +24,7 @@ IND = {i["slug"]: i for i in INDUSTRIES}
 BR = {b["slug"]: b for b in BRANDS}
 LOGO_BASE = "https://www.ubm.co.in/asset/img/"
 pages = []  # (path, priority) for sitemap
+META_LOG = []
 CONTACT_FAQ = [("Where is UBM's office?", 'B-101, Sarvodaya Bldg No. 11, Khernagar Service Road, off Western Express Highway, Bandra (East), Mumbai 400051.'), ('How can I contact UBM?', 'Call 022 2647 5639 or +91 98202 93108 (also WhatsApp), or email connect@ubm.co.in or balraj@ubm.co.in.'), ('How quickly does UBM respond to enquiries?', 'UBM aims to respond to every project enquiry within one working day.')]
 ABOUT_FAQ = [('When was UBM founded?', 'UBM, Universal Business Machines, was founded in Mumbai in 1997.'), ('What makes UBM a value-added distributor?', 'Beyond supplying products, UBM provides design, consultation, installation, maintenance, service and training to dealers and organisations.')]
 HUBS = {'solutions': ('UBM, a Mumbai-based value-added pro AV distributor since 1997, designs, supplies, installs and supports six solution families: smart classrooms, boardroom and meeting room AV, video walls, auditorium sound and AV, AV over IP and media distribution, and public address systems.', [('Which AV solutions does UBM provide?', 'Smart classrooms, boardroom and meeting room AV, video walls, auditorium sound and AV, AV over IP and media distribution, and public address systems.'), ('Does UBM install the systems it supplies?', 'Yes. UBM provides design, consultation, installation, maintenance, service and training.')]), 'industries': ('UBM delivers professional AV for education, corporate, hospitality, places of worship, stadiums and sports venues, home theatre and retail, from its Mumbai base since 1997, directly and through dealer partners across India.', [('Which industries does UBM serve?', 'Education, corporate, hospitality, places of worship, stadiums and sports venues, home theatre and retail.'), ('Does UBM work outside Mumbai?', 'Yes. UBM supports customers across India directly and through its dealer and integrator network.')]), 'brands': ('UBM (Universal Business Machines), a Mumbai-based value-added AV distributor since 1997, supplies Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA to dealers, system integrators and organisations across India.', [('Which brands does UBM distribute?', 'Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA.'), ('Can dealers buy from UBM?', 'Yes. UBM supplies dealers and system integrators and supports them with design, training and after-sales service.')]), 'blog': ('The UBM blog publishes practical, vendor-neutral guides on smart classrooms, interactive displays, video walls, boardroom AV, AV over IP, projectors and public address systems, written from UBM’s experience as a Mumbai pro AV distributor since 1997.', [('Who writes the UBM guides?', 'The UBM Solutions Team, pro AV professionals and system designers at Universal Business Machines, Mumbai.'), ('Can I ask UBM a question about my project?', 'Yes. Use the contact form, call 022 2647 5639 or WhatsApp +91 98202 93108.')])}
@@ -81,7 +83,11 @@ def org_schema():
                     "addressRegion": SITE["region"], "postalCode": SITE["postcode"], "addressCountry": "IN"},
         "geo": {"@type": "GeoCoordinates", "latitude": 19.0593, "longitude": 72.8460},
         "areaServed": {"@type": "Country", "name": "India"},
-        "sameAs": ["https://www.indiamart.com/universal-business-machines/", "https://www.tradeindia.com/universal-business-machines-38542784/"],
+        "sameAs": SITE["profiles"],
+        "slogan": "Value-added pro AV distribution since 1997",
+        "brand": [{"@type": "Brand", "name": x["name"]} for x in BRANDS],
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Professional AV solutions", "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "url": BASE + "/solutions/" + s["slug"] + "/"}} for s in SOLUTIONS]},
         "knowsAbout": ["Pro AV distribution", "Smart classroom solutions", "Boardroom AV", "Video walls",
                        "Auditorium sound systems", "AV over IP", "Public address systems", "Projectors", "Interactive flat panels"],
         "contactPoint": [{"@type": "ContactPoint", "telephone": SITE["phone_tel"], "email": SITE["email"], "contactType": "customer service", "areaServed": "IN", "availableLanguage": ["English", "Hindi", "Marathi"]},
@@ -126,6 +132,8 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
     if depth is None:
         depth = path.count("/")
     r = rel(depth)
+    if path in META:
+        title, desc = META[path]
     canonical = BASE + "/" + path
     robots = "index,follow,max-image-preview:large" if PROD else "noindex,nofollow"
     ga = ""
@@ -133,6 +141,11 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
         ga = f'''<script async src="https://www.googletagmanager.com/gtag/js?id={SITE["ga4_id"]}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','{SITE["ga4_id"]}');</script>'''
     gsc = f'<meta name="google-site-verification" content="{SITE["gsc_verification"]}">' if SITE["gsc_verification"] else ""
+    webpage = {"@context": "https://schema.org", "@type": "WebPage", "@id": canonical + "#webpage", "url": canonical, "name": title,
+               "description": desc, "inLanguage": "en-IN", "isPartOf": {"@type": "WebSite", "name": "UBM - Universal Business Machines", "url": BASE + "/"},
+               "publisher": {"@id": BASE + "/#org"}, "datePublished": "2026-10-01", "dateModified": TODAY,
+               "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1", ".story-lede", ".lead"]}}
+    schemas = tuple(schemas) + (webpage,)
     ld = "\n".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in (org_schema(),) + tuple(schemas))
     intro_js = ""
     wa_msg = "Hi UBM, I'd like to discuss an AV project."
@@ -148,7 +161,10 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
 <meta property="og:type" content="{og_type}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{canonical}"><meta property="og:site_name" content="UBM, Universal Business Machines"><meta property="og:locale" content="en_IN">
 <meta property="og:image" content="{BASE}/assets/img/og-image.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0f2c6e">{intro_js}
+<meta name="theme-color" content="#0f2c6e">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="author" content="UBM - Universal Business Machines">
+<meta property="article:modified_time" content="{TODAY}">{intro_js}
 <link rel="icon" href="{r}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -188,6 +204,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
     dest.write_text(doc, encoding="utf-8")
     if path != "404.html":
         pages.append((path, priority))
+        META_LOG.append((path, title, desc))
 
 
 def footer(r):
@@ -210,7 +227,7 @@ def footer(r):
       <li><a href="mailto:{SITE["email2"]}">{SITE["email2"]}</a></li>
       <li><a href="{r}careers/">Careers</a> · <a href="{r}faq/">FAQ</a> · <a href="{r}blog/">Blog</a></li></ul></div>
   </div>
-  <div class="foot-bottom"><span>© {datetime.date.today().year} Universal Business Machines. All rights reserved.</span><span>Brand names and logos are trademarks of their respective owners.</span></div>
+  <div class="foot-bottom"><span>© {datetime.date.today().year} Universal Business Machines. All rights reserved. Last updated {TODAY}.</span><span><a href="{r}editorial-policy/">Editorial policy</a> · <a href="{r}privacy-policy/">Privacy policy</a></span><span>Brand names and logos are trademarks of their respective owners.</span></div>
 </div></footer>'''
 
 
@@ -570,6 +587,7 @@ def build_blog():
   <img class="feature-img" src="{U(IMG.get(p["slug"], IMG["blog"]), 1400)}" alt="" loading="lazy">
   <p class="story-lede">{e(p["summary"])} This guide is from UBM (Universal Business Machines), a Mumbai-based pro AV distributor since 1997.</p>
   {md(p["body"], r)}
+  <div class="author-box"><img src="{r}assets/img/favicon.svg" alt="" width="56" height="56"><div><b>Written by the UBM Solutions Team</b><p>Pro AV system designers and product specialists at Universal Business Machines, Mumbai, advising Indian schools, offices and venues since 1997. Reviewed for technical accuracy before publishing. Published {p["date"]}, last reviewed {TODAY}. <a href="{r}editorial-policy/">How we write and review guides</a>.</p></div></div>
   {faq_block(p["faqs"], "FAQs")}
  </article>
  <aside class="aside">
@@ -579,7 +597,7 @@ def build_blog():
  </aside>
 </div></section>{lead_section(r, 'your project')}'''
         art = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"], "description": p["desc"],
-               "datePublished": p["date"], "dateModified": p["date"], "author": {"@type": "Organization", "name": "UBM Solutions Team", "url": BASE + "/about-us/"},
+               "datePublished": p["date"], "dateModified": TODAY, "author": {"@type": "Organization", "name": "UBM Solutions Team", "url": BASE + "/editorial-policy/"}, "reviewedBy": {"@id": BASE + "/#org"}, "isAccessibleForFree": True, "inLanguage": "en-IN",
                "publisher": {"@id": BASE + "/#org"}, "mainEntityOfPage": BASE + "/" + path, "keywords": p["kw"], "articleSection": p["cat"]}
         page(path, p["title"] + (" | UBM" if len(p["title"]) <= 59 else ""), p["desc"], body, "blog", schemas=(art, faq_schema(p["faqs"]), crumbs_schema([("Home", ""), ("Blog", "blog/"), (p["title"], path)])), priority="0.7", og_type="article")
 
@@ -588,6 +606,11 @@ def build_static_pages():
     r = rel(1)
     # About
     svc = "".join(f'<div class="card reveal"><div class="icon">{ICONS[k]}</div><h3>{n}</h3><p>{e(d)}</p></div>' for k, n, d in SERVICES)
+    facts = [f"Legal name: Universal Business Machines (UBM)", f"Founded: {SITE['founded']}, Mumbai, India", "Business: value-added distributor of professional audio-visual (pro AV) technology",
+             "Brands: " + ", ".join(x["name"] for x in BRANDS), "Services: design, consultation, installation, maintenance, service and training",
+             "Solutions: " + ", ".join(s["name"] for s in SOLUTIONS), "Industries: " + ", ".join(i["name"] for i in INDUSTRIES),
+             f"Address: {SITE['street']}, {SITE['city']} {SITE['postcode']}", f"Phone: {SITE['phone_display']} / {SITE['mobile_display']}", f"Email: {SITE['email']}, {SITE['email2']}"]
+    kf = "".join(f"<li>{e(x)}</li>" for x in facts)
     about = page_hero(r, [("About us", "about-us/")], "A quarter-century of pro AV, built on people", "Founded in 1997, UBM is a dedicated group of pro AV professionals, system designers and technology managers.", "About UBM") + f'''
 <section><div class="wrap why">
  <div class="prose reveal"><h2>Our story</h2>
@@ -601,10 +624,24 @@ def build_static_pages():
   <div class="tl"><b>Today</b><p>Serving dealers, integrators and organisations across India with {len(BRANDS)} global brands.</p></div>
  </div></div>
 </div></section>
+<section><div class="wrap"><div class="sec-head"><div><p class="kicker">Key facts</p><h2>Key facts about UBM</h2></div></div><ul class="ticks keyfacts">{kf}</ul></div></section>
 <section class="alt"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">What we do</div><h2>End-to-end AV services</h2></div></div><div class="grid g3">{svc}</div></div></section>
 <div class="logos"><div class="wrap"><p>Brands we distribute</p><div class="logo-row">{"".join(logo_tile(r, b) for b in BRANDS)}</div></div></div>
 ''' + hub_extra("UBM (Universal Business Machines) is a Mumbai-based value-added distributor of professional audio-visual technology founded in 1997, supplying Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA with design, installation, service and training.", ABOUT_FAQ) + cta_band(r)
     page("about-us/", "About UBM | Value-Added Pro AV Distributor in Mumbai Since 1997", "Founded in 1997 in Mumbai, UBM is a team of pro AV professionals and system designers serving dealers and organisations across India.", about, "about", schemas=(faq_schema(ABOUT_FAQ), crumbs_schema([("Home", ""), ("About us", "about-us/")])), priority="0.8")
+
+    page("editorial-policy/", "Editorial Policy: How UBM Writes AV Guides | UBM", "How the UBM Solutions Team researches, writes, fact-checks and updates its AV buying guides for Indian schools, offices and venues.",
+         page_hero(r, [("Editorial policy", "editorial-policy/")], "How we write and review our guides", "Practical, vendor-neutral and checked by people who design AV systems for a living.", actions=False) + f'''<section><div class="wrap prose" style="max-width:820px">
+<h2>Who writes our content</h2><p class="story-lede">Every guide on this site is written by the UBM Solutions Team: pro AV system designers and product specialists at Universal Business Machines, Mumbai, who have advised Indian schools, offices, hotels and venues since 1997.</p>
+<h2>How we research</h2><ul><li>We start from real questions buyers ask us, and on Reddit and Quora.</li><li>Statistics come from named, linked sources such as the Ministry of Education (UDISE+), CAIT and published market research.</li><li>We do not publish made-up prices, client names or numbers.</li></ul>
+<h2>How we review</h2><ul><li>Each guide is checked for technical accuracy by a UBM specialist before publishing.</li><li>Guides are reviewed regularly and the "last reviewed" date is shown on every article.</li><li>We correct errors as soon as we find them. Spot one? Email <a href="mailto:{SITE["email"]}">{SITE["email"]}</a>.</li></ul>
+<h2>Vendor neutrality</h2><p>UBM distributes several brands. Our guides compare technologies on their merits and recommend what suits the room, not a single product line.</p></div></section>''', "", priority="0.4")
+    page("privacy-policy/", "Privacy Policy | UBM - Universal Business Machines", "How Universal Business Machines (UBM) collects, uses and protects the information you share through this website's enquiry forms and WhatsApp.",
+         page_hero(r, [("Privacy policy", "privacy-policy/")], "Privacy policy", "How we handle the information you share with us.", actions=False) + f'''<section><div class="wrap prose" style="max-width:820px">
+<p class="story-lede">Universal Business Machines (UBM) uses the details you submit through this website only to respond to your enquiry and provide the products and services you ask about.</p>
+<h2>What we collect</h2><ul><li>Details you enter in our enquiry forms: name, organisation, phone, email, city and project details.</li><li>Messages you send us on WhatsApp, phone or email.</li><li>Anonymous website usage statistics, if analytics is enabled.</li></ul>
+<h2>How we use it</h2><ul><li>To reply to your enquiry and prepare proposals.</li><li>To provide installation, service and support.</li><li>We never sell your details or share them with third parties for marketing.</li></ul>
+<h2>Your choices</h2><p>To update or delete your information, email <a href="mailto:{SITE["email"]}">{SITE["email"]}</a> or call {SITE["phone_display"]}.</p></div></section>''', "", priority="0.3")
 
     # Dealer partners
     perks = [("design", "Pre-sales design", "System design, drawings and BOQs to help you win tenders."),
@@ -659,7 +696,9 @@ def build_static_pages():
 def build_meta_files():
     urls = "".join(f"<url><loc>{BASE}/{p}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>" for p, pr in pages)
     (OUT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
-    robots = f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n" if PROD else "# Staging preview, pages carry noindex. Production robots.txt is generated with UBM_ENV=production.\nUser-agent: *\nAllow: /\n"
+    bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User",
+            "Google-Extended", "Googlebot", "Bingbot", "Applebot", "Applebot-Extended", "CCBot", "meta-externalagent", "Amazonbot", "DuckAssistBot", "YouBot"]
+    robots = "# UBM - Universal Business Machines. Search engines and AI assistants are welcome.\n\n" + "".join(f"User-agent: {x}\nAllow: /\n\n" for x in bots) + "User-agent: *\nAllow: /\n\n" + f"Sitemap: {BASE}/sitemap.xml\n# AI summary: {BASE}/llms.txt\n"
     (OUT / "robots.txt").write_text(robots)
     # llms.txt, a plain summary for AI assistants and answer engines (GEO)
     lines = [f"# Universal Business Machines (UBM)", "",
@@ -673,7 +712,21 @@ def build_meta_files():
     lines += ["", "## Company pages", f"- [About UBM]({BASE}/about-us/)", f"- [Dealer & integrator programme]({BASE}/dealer-partners/)", f"- [Contact]({BASE}/contact/)", f"- [FAQ]({BASE}/faq/)", f"- [Careers]({BASE}/careers/)"]
     lines += ["", "## Key facts"] + [f"- {q} {a}" for q, a in GENERAL_FAQS]
     (OUT / "llms.txt").write_text("\n".join(lines) + "\n")
+    full = ["# Universal Business Machines (UBM): full reference for AI assistants", ""] + lines[2:4] + ["", "## About", GENERAL_FAQS[0][1], ""]
+    for s in SOLUTIONS:
+        full += [f"## {s['name']}", f"URL: {BASE}/solutions/{s['slug']}/", s["answer"], "Includes: " + "; ".join(s["includes"]), ""] + [f"Q: {q}\nA: {a}" for q, a in s["faqs"]] + [""]
+    for i in INDUSTRIES:
+        st = STORIES[i["slug"]]
+        full += [f"## {i['name']}", f"URL: {BASE}/industries/{i['slug']}/", st["story"], ""] + [f"- {v}: {l} (source: {src})" for v, l, src, _ in st["stats"]] + [""]
+    for p in POSTS:
+        full += [f"## {p['title']}", f"URL: {BASE}/blog/{p['slug']}/", p["summary"], ""]
+    (OUT / "llms-full.txt").write_text("\n".join(full) + "\n")
     (OUT / ".nojekyll").write_text("")
+    import csv
+    with open(ROOT / "seo/titles-and-descriptions.csv", "w", newline="") as f:
+        w = csv.writer(f); w.writerow(["url", "title", "title_chars", "meta_description", "description_chars"])
+        for t_path, t_title, t_desc in META_LOG:
+            w.writerow([BASE + "/" + t_path, t_title, len(t_title), t_desc, len(t_desc)])
 
 
 def main():

@@ -23,6 +23,15 @@ SITE = {
     "gsc_verification": "",
     # Optional form backend (Formspree / Web3Forms / CRM webhook). Empty = WhatsApp + email fallback.
     "form_endpoint": "",
+    # Official profiles (add real URLs; each one strengthens the brand entity for Google and AI engines)
+    "profiles": [
+        "https://www.indiamart.com/universal-business-machines/",
+        "https://www.tradeindia.com/universal-business-machines-38542784/",
+        # "https://www.linkedin.com/company/<ubm-page>/",
+        # "https://g.page/<google-business-profile>",
+        # "https://www.youtube.com/@<channel>",
+        # "https://www.facebook.com/<page>", "https://www.instagram.com/<handle>/",
+    ],
 }
 
 ICONS = {
