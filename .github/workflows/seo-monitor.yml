@@ -1,0 +1,36 @@
+name: SEO / AEO / GEO monitor
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"   # every Monday 08:47 IST
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Site to audit (URL or 'docs' for the local build)"
+        default: "https://www.ubm.co.in"
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Technical + AEO audit
+        run: python3 seo/audit.py "${{ github.event.inputs.target || 'https://www.ubm.co.in' }}" || true
+      - name: Rankings + AI Overview citations
+        if: ${{ env.APIFY_TOKEN != '' }}
+        env: { APIFY_TOKEN: "${{ secrets.APIFY_TOKEN }}" }
+        run: python3 seo/rank_tracker.py
+      - name: Commit reports
+        run: |
+          git config user.name "ubm-seo-bot"
+          git config user.email "seo-bot@users.noreply.github.com"
+          git add reports
+          git diff --cached --quiet || git commit -m "SEO monitor: weekly reports $(date +%F)"
+          git push
+    env:
+      APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}

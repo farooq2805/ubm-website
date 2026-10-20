@@ -1,0 +1,40 @@
+keyword,intent,target_page,priority,cluster
+AV distributor in India,commercial,/,P1,brand-distribution
+pro AV distributor Mumbai,commercial,/,P1,brand-distribution
+value added AV distributor India,commercial,/dealer-partners/,P1,brand-distribution
+audio visual companies in Mumbai,commercial,/,P2,brand-distribution
+AV dealer partnership India,commercial,/dealer-partners/,P2,brand-distribution
+Epson projector distributor Mumbai,transactional,/epson/,P1,brands
+Epson projector dealers Mumbai,transactional,/epson/,P1,brands
+Bose Professional distributor India,transactional,/bose/,P1,brands
+Bose Professional dealer Mumbai,transactional,/bose/,P2,brands
+ATEN KVM distributor India,transactional,/aten/,P1,brands
+ATEN distributor Mumbai,transactional,/aten/,P2,brands
+Liberty AV Solutions India,transactional,/liberty-av-solutions/,P2,brands
+BenQ projector distributor Mumbai,transactional,/benq/,P2,brands
+ViewSonic interactive display distributor India,transactional,/viewsonic/,P2,brands
+TOA PA system dealer Mumbai,transactional,/toa/,P2,brands
+smart classroom solutions India,commercial,/solutions/smart-classroom-solutions/,P1,education
+smart classroom solutions Mumbai,commercial,/solutions/smart-classroom-solutions/,P1,education
+smart class setup cost in India,informational,/blog/smart-classroom-setup-guide-india/,P1,education
+smart classroom equipment list,informational,/blog/smart-classroom-setup-guide-india/,P2,education
+interactive flat panel distributor India,transactional,/viewsonic/,P1,education
+interactive flat panel vs projector,informational,/blog/interactive-flat-panel-vs-projector/,P2,education
+boardroom AV solutions Mumbai,commercial,/solutions/boardroom-meeting-room-av-solutions/,P1,corporate
+conference room AV solutions,commercial,/solutions/boardroom-meeting-room-av-solutions/,P1,corporate
+video conferencing solutions Mumbai,commercial,/solutions/boardroom-meeting-room-av-solutions/,P2,corporate
+boardroom AV setup checklist,informational,/blog/boardroom-av-video-conferencing-checklist/,P3,corporate
+video wall solutions Mumbai,commercial,/solutions/video-wall-solutions/,P1,display
+LED video wall Mumbai,commercial,/solutions/video-wall-solutions/,P2,display
+video wall installation India,commercial,/solutions/video-wall-solutions/,P2,display
+auditorium sound system installation Mumbai,commercial,/solutions/auditorium-av-solutions/,P1,audio
+auditorium sound system design,informational,/blog/auditorium-sound-system-design-guide/,P2,audio
+PA system for office India,commercial,/solutions/public-address-pa-systems/,P2,audio
+public address system Mumbai,commercial,/solutions/public-address-pa-systems/,P2,audio
+AV over IP solutions India,commercial,/solutions/av-over-ip-media-distribution/,P1,signal
+what is AV over IP,informational,/blog/what-is-av-over-ip/,P2,signal
+HDMI matrix switcher India,transactional,/solutions/av-over-ip-media-distribution/,P2,signal
+hotel AV solutions India,commercial,/industries/hospitality/,P3,industry
+church sound system India,commercial,/industries/places-of-worship/,P3,industry
+home theatre installation Mumbai,commercial,/industries/home-theatre/,P3,industry
+best pro AV distributor India,informational,/blog/how-to-choose-pro-av-distributor-india/,P2,brand-distribution

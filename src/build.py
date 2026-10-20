@@ -139,7 +139,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
 <meta property="og:type" content="{og_type}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{canonical}"><meta property="og:site_name" content="UBM — Universal Business Machines"><meta property="og:locale" content="en_IN">
 <meta property="og:image" content="{BASE}/assets/img/og-image.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#152238">
+<meta name="theme-color" content="#1f4fb8">
 <link rel="icon" href="{r}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
