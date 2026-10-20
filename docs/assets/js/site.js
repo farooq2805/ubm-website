@@ -115,3 +115,26 @@
     window.open("https://wa.me/" + cfg.wa + "?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
   }
 })();
+(function () {
+  // Hero slider
+  var slides = document.querySelectorAll(".hero-slide"), dots = document.querySelectorAll(".hero-dots button"), cap = document.getElementById("hero-cap"), i = 0, t;
+  function go(n) {
+    if (!slides.length) return;
+    slides[i].classList.remove("on"); dots[i] && dots[i].classList.remove("on");
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("on"); dots[i] && dots[i].classList.add("on");
+    var im = slides[i].querySelector("img"); if (im && im.loading === "lazy") im.loading = "eager";
+    if (cap) cap.textContent = slides[i].getAttribute("data-cap");
+  }
+  function auto() { clearInterval(t); t = setInterval(function () { go(i + 1); }, 6000); }
+  Array.prototype.forEach.call(dots, function (d, n) { d.addEventListener("click", function () { go(n); auto(); }); });
+  if (slides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) auto();
+  // Carousel buttons
+  var track = document.getElementById("spaces");
+  document.querySelectorAll("[data-car]").forEach(function (b) {
+    b.addEventListener("click", function () { if (track) track.scrollBy({ left: +b.getAttribute("data-car") * track.clientWidth * 0.75, behavior: "smooth" }); });
+  });
+  // Header shadow on scroll
+  var h = document.querySelector(".site-header");
+  addEventListener("scroll", function () { if (h) h.classList.toggle("scrolled", scrollY > 10); }, { passive: true });
+})();

@@ -6,7 +6,7 @@ Usage:  python3 src/build.py            -> staging build (noindex) into docs/
 """
 import html, json, os, re, shutil, datetime
 from pathlib import Path
-from content import SITE, ICONS, SERVICES, SOLUTIONS, INDUSTRIES, BRANDS, GENERAL_FAQS
+from content import SITE, ICONS, SERVICES, SOLUTIONS, INDUSTRIES, BRANDS, GENERAL_FAQS, IMG, HERO_SLIDES, U
 from blog import POSTS
 from blog_more import MORE_POSTS
 POSTS = sorted(POSTS + MORE_POSTS, key=lambda p: p["date"], reverse=True)
@@ -148,7 +148,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
 <meta name="theme-color" content="#1f4fb8">
 <link rel="icon" href="{r}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{r}assets/css/site.css">
 {gsc}{ga}
 {ld}
@@ -164,7 +164,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
   {nav(r, active)}
   <div class="header-cta">
     <a class="btn btn-ghost" href="tel:{SITE["phone_tel"]}">Call us</a>
-    <a class="btn btn-gold" href="{r}contact/#enquiry">Get a proposal</a>
+    <a class="btn btn-coral" href="{r}contact/#enquiry">Consult now</a>
     <button class="menu-toggle" aria-label="Open menu" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </div></header>
@@ -211,12 +211,6 @@ def footer(r):
 </div></footer>'''
 
 
-def page_hero(r, trail, h1, intro, eyebrow="", actions=True):
-    c = ' <span>/</span> '.join([f'<a href="{r}">Home</a>'] + [f'<a href="{r}{p}">{e(n)}</a>' for n, p in trail[:-1]] + [e(trail[-1][0])])
-    act = f'''<div class="hero-actions"><a class="btn btn-gold" href="{r}contact/#enquiry">Get a free consultation</a><a class="btn btn-ghost" href="https://wa.me/{SITE["whatsapp"]}" target="_blank" rel="noopener">WhatsApp an expert</a></div>''' if actions else ""
-    eb = f'<div class="eyebrow">{e(eyebrow)}</div>' if eyebrow else ""
-    return f'''<section class="page-hero on-dark"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb">{c}</nav>{eb}<h1>{e(h1)}</h1><p class="lead">{e(intro)}</p>{act}</div></section>'''
-
 
 def logo_tile(r, b):
     cls = "logo-tile epson" if b["slug"] == "epson" else "logo-tile"
@@ -231,10 +225,6 @@ def faq_block(faqs, title="Frequently asked questions"):
 def hub_extra(answer, faqs):
     return f'<section class="alt"><div class="wrap content"><article class="prose"><div class="answer"><b>In short</b><p>{e(answer)}</p></div><h2>How UBM helps</h2><p>{e(answer)}</p></article></div></section><section><div class="wrap">{faq_block(faqs)}</div></section>'
 
-
-def cta_band(r, h="Planning an AV project?", p="Tell us about your space. A UBM specialist will respond within one working day with ideas, options and a clear proposal."):
-    return f'''<section><div class="wrap"><div class="cta-band reveal"><div><div class="eyebrow">Talk to a specialist</div><h2>{e(h)}</h2><p>{e(p)}</p></div>
-<div class="actions"><a class="btn btn-gold" href="{r}contact/#enquiry">Get a proposal</a><a class="btn btn-ghost" href="tel:{SITE["phone_tel"]}">{SITE["phone_display"]}</a></div></div></div></section>'''
 
 
 def enquiry_form(r, preset=""):
@@ -263,83 +253,131 @@ def enquiry_form(r, preset=""):
 
 
 # ------------------------------------------------------------------ pages
+def page_hero(r, trail, h1, intro, eyebrow="", actions=True, img=None):
+    c = ' <span>/</span> '.join([f'<a href="{r}">Home</a>'] + [f'<a href="{r}{p}">{e(n)}</a>' for n, p in trail[:-1]] + [e(trail[-1][0])])
+    act = f'''<div class="hero-actions"><a class="btn btn-coral" href="{r}contact/#enquiry">Get a free consultation</a><a class="btn btn-ghost" href="https://wa.me/{SITE["whatsapp"]}" target="_blank" rel="noopener">WhatsApp an expert</a></div>''' if actions else ""
+    eb = f'<div class="eyebrow">{e(eyebrow)}</div>' if eyebrow else ""
+    if img is None:
+        key = trail[-1][1].strip("/").split("/")[-1]
+        HUB = {"solutions": "auditorium-av-solutions", "industries": "corporate", "brands": "epson", "blog": "blog", "about-us": "about",
+               "dealer-partners": "partners", "contact": "contact", "careers": "about", "faq": "about2"}
+        img = IMG.get(HUB.get(key, key))
+    bg = f'<img src="{U(img, 1800)}" alt="" fetchpriority="high">' if img else ""
+    return f'''<section class="page-hero">{bg}<div class="wrap"><nav class="crumbs" aria-label="Breadcrumb">{c}</nav>{eb}<h1>{e(h1)}</h1><p class="lead">{e(intro)}</p>{act}</div></section>'''
+
+
+def cta_band(r, h="Planning an AV project?", p="Tell us about your space. A UBM specialist will respond within one working day with ideas, options and a clear proposal."):
+    return f'''<section><div class="wrap"><div class="cta-band reveal"><img src="{U(IMG["cta"], 1600)}" alt="" loading="lazy"><div><div class="eyebrow">Talk to a specialist</div><h2>{e(h)}</h2><p>{e(p)}</p></div>
+<div class="actions"><a class="btn btn-coral" href="{r}contact/#enquiry">Get a proposal</a><a class="btn btn-ghost" href="tel:{SITE["phone_tel"]}">{SITE["phone_display"]}</a></div></div></div></section>'''
+
+
+def sol_card(r, s):
+    return f'''<a class="pcard reveal" href="{r}solutions/{s["slug"]}/"><div class="ph"><img src="{U(IMG[s["slug"]], 900)}" alt="{e(s["name"])}" loading="lazy"><span class="chip">Solution</span></div><div class="bd"><span class="ic-b">{ICONS[s["icon"]]}</span><h3>{e(s["name"])}</h3><p>{e(s["intro"])}</p><span class="link-arrow">Explore solution</span></div></a>'''
+
+
+def ind_card(r, i):
+    return f'''<a class="pcard reveal" href="{r}industries/{i["slug"]}/"><div class="ph"><img src="{U(IMG[i["slug"]], 900)}" alt="AV for {e(i["name"])}" loading="lazy"><span class="chip">Industry</span></div><div class="bd"><span class="ic-b">{ICONS[i["icon"]]}</span><h3>{e(i["name"])}</h3><p>{e(i["intro"])}</p><span class="link-arrow">See how we help</span></div></a>'''
+
+
+def brand_card(r, b):
+    return f'''<a class="pcard reveal" href="{r}{b["slug"]}/"><div class="ph"><img src="{U(IMG[b["slug"]], 900)}" alt="{e(b["name"])} products" loading="lazy"><span class="chip">{e(b["name"])}</span></div><div class="bd"><h3>{e(b["name"])}</h3><p>{e(b["intro"])}</p><span class="link-arrow">View range</span></div></a>'''
+
+
+def post_card(r, p):
+    return f'''<a class="pcard post reveal" href="{r}blog/{p["slug"]}/"><div class="ph"><img src="{U(IMG.get(p["slug"], IMG["blog"]), 900)}" alt="" loading="lazy"><span class="chip">{e(p["cat"])}</span></div><div class="bd"><span class="mono">{p["read"]} min read · {p["date"]}</span><h3 style="margin-top:10px">{e(p["title"])}</h3><p>{e(p["desc"])}</p><span class="link-arrow">Read guide</span></div></a>'''
+
+
+def marquee(r):
+    tiles = "".join(logo_tile(r, b) for b in BRANDS)
+    return f'<div class="marquee"><div class="label">Global brands we distribute</div><div class="marquee-track">{tiles}{tiles}</div></div>'
+
+
+STAT_IC = {
+    "cal": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+    "tag": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>',
+    "grid": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+    "map": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg>',
+}
+
+
 def build_home():
     r = rel(0)
-    logos = "".join(logo_tile(r, b) for b in BRANDS)
-    sols = "".join(f'''<a class="card reveal" href="{r}solutions/{s["slug"]}/"><div class="icon">{ICONS[s["icon"]]}</div><h3>{e(s["name"])}</h3><p>{e(s["intro"])}</p><span class="link-arrow">Explore</span></a>''' for s in SOLUTIONS)
-    inds = "".join(f'''<a class="card reveal" href="{r}industries/{i["slug"]}/"><div class="icon">{ICONS[i["icon"]]}</div><h3>{e(i["name"])}</h3><p>{e(i["intro"])}</p><span class="link-arrow">See how we help</span></a>''' for i in INDUSTRIES)
-    steps = "".join(f'<div class="step reveal"><h3>{n}</h3><p>{e(d)}</p></div>' for _, n, d in SERVICES)
+    slides = "".join(f'<div class="hero-slide{" on" if n == 0 else ""}" data-cap="{e(t)}"><img src="{U(pid, 2000)}" alt="{e(t)}" {"fetchpriority=high" if n == 0 else "loading=lazy"}></div>' for n, (pid, t, _) in enumerate(HERO_SLIDES))
+    dots = "".join(f'<button type="button" aria-label="Show slide {n + 1}"{" class=on" if n == 0 else ""}></button>' for n in range(len(HERO_SLIDES)))
+    sols = "".join(sol_card(r, s) for s in SOLUTIONS)
+    spaces = "".join(f'''<a class="space" href="{r}industries/{i["slug"]}/"><img src="{U(IMG[i["slug"]], 800)}" alt="AV solutions for {e(i["name"])}" loading="lazy"><div class="cap"><small>{e(i["name"])}</small><h3>{e(i["h1"])}</h3><p>{e(i["intro"])}</p></div></a>''' for i in INDUSTRIES)
+    svcs = "".join(f'<div class="card svc reveal"><span class="num">0{n + 1}</span><div class="icon">{ICONS[k]}</div><h3>{t}</h3><p>{e(d)}</p></div>' for n, (k, t, d) in enumerate(SERVICES))
     posts = "".join(post_card(r, p) for p in POSTS[:3])
+    years = datetime.date.today().year - SITE["founded"]
     body = f'''
-<section class="hero"><div class="grid-lines"></div>
- <div class="seal" aria-hidden="true"><div><b>25+</b><span>Years in AV</span></div></div>
- <div class="wrap">
-  <div>
-   <div class="eyebrow">Value-added Pro AV distribution · Since 1997</div>
-   <h1>Sound and vision, <em>engineered</em> for the spaces where India learns, meets and gathers.</h1>
-   <p class="lead">UBM is a Mumbai-based value-added distributor of professional audio-visual technology. For more than 25 years we have helped dealers, integrators and organisations design, supply, install and support AV systems that simply work.</p>
-   <div class="hero-actions"><a class="btn btn-gold" href="#planner">Plan my space →</a><a class="btn btn-ghost" href="dealer-partners/">Become a dealer partner</a></div>
-   <div class="hero-proof">
-    <div><strong data-count="1997">1997</strong>Founded in Mumbai</div>
-    <div><strong><span data-count="{len(BRANDS)}">{len(BRANDS)}</span></strong>Global AV brands</div>
-    <div><strong><span data-count="{len(INDUSTRIES)}">{len(INDUSTRIES)}</span></strong>Industries served</div>
-    <div><strong>6</strong>Services, end-to-end</div>
-   </div>
-  </div>
-  {flow_svg()}
- </div>
+<section class="hero" aria-label="Introduction">
+ {slides}
+ <div class="wrap"><div class="hero-copy">
+  <div class="eyebrow">Value-added Pro AV distribution · Since 1997</div>
+  <h1>India's trusted partner for <span class="hl">sound, vision</span> &amp; collaboration.</h1>
+  <p class="lead">UBM designs, supplies, installs and supports professional audio-visual systems for classrooms, boardrooms, auditoriums and venues — backed by {len(BRANDS)} global brands and more than 25 years of expertise.</p>
+  <div class="hero-actions"><a class="btn btn-coral" href="contact/#enquiry">Consult an expert →</a><a class="btn btn-glass" href="#planner">Plan my space</a></div>
+  <div class="hero-dots">{dots}<span class="hero-caption" id="hero-cap">{e(HERO_SLIDES[0][1])}</span></div>
+ </div></div>
+ <div class="hero-badge"><b>{years}</b><span>years of pro AV<br>expertise, since 1997</span></div>
 </section>
-<div class="logos"><div class="wrap"><p>Brands we distribute</p><div class="logo-row">{logos}</div></div></div>
+<div class="stats-card"><div class="wrap"><div class="inner">
+ <div class="stat-i"><span class="ic">{STAT_IC["cal"]}</span><div><strong data-count="1997">1997</strong><span>Founded in Mumbai</span></div></div>
+ <div class="stat-i"><span class="ic">{STAT_IC["tag"]}</span><div><strong data-count="{len(BRANDS)}">{len(BRANDS)}</strong><span>Global AV brands</span></div></div>
+ <div class="stat-i"><span class="ic">{STAT_IC["grid"]}</span><div><strong data-count="{len(SOLUTIONS)}">{len(SOLUTIONS)}</strong><span>Solution families</span></div></div>
+ <div class="stat-i"><span class="ic">{STAT_IC["map"]}</span><div><strong>Pan-India</strong><span>Direct &amp; partner support</span></div></div>
+</div></div></div>
+
+<section><div class="wrap intro">
+ <div class="collage reveal"><img class="p1" src="{U(IMG["about"], 1000)}" alt="Corporate meeting space with professional AV" loading="lazy"><img class="p2" src="{U(IMG["about2"], 800)}" alt="Professional audio mixing console" loading="lazy"><div class="yrs"><b>{years}+</b><span>Years of trust</span></div></div>
+ <div class="reveal"><div class="eyebrow">About UBM</div><h2>Your partner in professional AV <span class="hl">excellence</span></h2>
+  <p class="lead">Universal Business Machines is a Mumbai-based value-added distributor of professional audio-visual technology. Since 1997 our pro AV professionals, system designers and technology managers have helped dealers, integrators and organisations choose, deploy and support systems that simply work.</p>
+  <ul class="ticks"><li>Design-led consultation</li><li>Multi-brand portfolio</li><li>Installation &amp; commissioning</li><li>Maintenance &amp; service</li><li>Dealer &amp; integrator support</li><li>Training for every team</li></ul>
+  <div class="hero-actions" style="margin-top:0"><a class="btn btn-blue" href="about-us/">More about us</a><a class="btn btn-ghost" href="tel:{SITE["phone_tel"]}">Call {SITE["phone_display"]}</a></div></div>
+</div></section>
+
+{marquee(r)}
+
+<section class="alt"><div class="wrap">
+ <div class="sec-head"><div><div class="eyebrow">What we deliver</div><h2>Turnkey AV solutions for every space</h2><p class="lead">From a single huddle room to an entire campus — designed around the people who use it and the people who maintain it.</p></div><a class="btn btn-ghost" href="solutions/">All solutions →</a></div>
+ <div class="grid g3">{sols}</div>
+</div></section>
+
+<section class="counter-band"><div class="wrap">
+ <h2>Numbers that reflect a quarter-century of trust</h2>
+ <div class="cnt"><strong data-count="{years}">{years}</strong><span>Years in pro AV</span></div>
+ <div class="cnt"><strong data-count="{len(BRANDS)}">{len(BRANDS)}</strong><span>Global brands</span></div>
+ <div class="cnt"><strong data-count="{len(INDUSTRIES)}">{len(INDUSTRIES)}</strong><span>Industries served</span></div>
+ <div class="cnt"><strong data-count="6">6</strong><span>End-to-end services</span></div>
+</div></section>
 
 <section><div class="wrap">
- <div class="split">
-  <a class="path a reveal" href="dealer-partners/"><div class="eyebrow">For dealers &amp; integrators</div><h3>Win more projects with a distributor who designs with you.</h3>
-   <ul><li>Pre-sales system design and BOQ support</li><li>Complementary multi-brand portfolio</li><li>Demos, training and project support</li><li>Responsive after-sales service</li></ul><span class="btn btn-gold">Partner with UBM →</span></a>
-  <a class="path b reveal" href="contact/#enquiry"><div class="eyebrow">For organisations</div><h3>One accountable partner from first drawing to final handover.</h3>
-   <ul><li>Vendor-neutral consultation</li><li>Design, supply and installation</li><li>Maintenance and service plans</li><li>Training for your team</li></ul><span class="btn btn-navy">Start your project →</span></a>
- </div>
+ <div class="sec-head"><div><div class="eyebrow">Spaces we transform</div><h2>AV built for the way your sector works</h2></div><div class="car-btns"><button type="button" data-car="-1" aria-label="Previous">←</button><button type="button" data-car="1" aria-label="Next">→</button></div></div>
+ <div class="carousel"><div class="track" id="spaces">{spaces}</div></div>
 </div></section>
 
 <section class="alt"><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">Solutions</div><h2>Complete AV systems for every kind of space</h2><p class="lead">Each solution is designed around the room, the people who use it and the people who maintain it.</p></div><a class="link-arrow" href="solutions/">All solutions</a></div>
- <div class="grid g3">{sols}</div>
+ <div class="sec-head center"><div><div class="eyebrow">Our services</div><h2>Six services. One accountable partner.</h2><p class="lead">From the first drawing to years after handover, UBM stays with the project.</p></div></div>
+ <div class="grid g3">{svcs}</div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="split">
+  <a class="path a reveal" href="dealer-partners/"><img src="{U(IMG["partners"], 1000)}" alt="" loading="lazy"><div class="eyebrow">For dealers &amp; integrators</div><h3>Win more projects with a distributor who designs with you.</h3>
+   <ul><li>Pre-sales system design and BOQ support</li><li>Complementary multi-brand portfolio</li><li>Demos, training and project support</li><li>Responsive after-sales service</li></ul><span class="btn">Partner with UBM →</span></a>
+  <a class="path b reveal" href="contact/#enquiry"><img src="{U(IMG["boardroom-meeting-room-av-solutions"], 1000)}" alt="" loading="lazy"><div class="eyebrow">For organisations</div><h3>One accountable partner from first drawing to final handover.</h3>
+   <ul><li>Vendor-neutral consultation</li><li>Design, supply and installation</li><li>Maintenance and service plans</li><li>Training for your team</li></ul><span class="btn">Start your project →</span></a>
+ </div>
 </div></section>
 
 {planner()}
 
-<section class="on-dark"><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">How we work</div><h2>Six services. One accountable partner.</h2><p class="lead">From the first conversation to years after handover, UBM stays with the project.</p></div></div>
- <div class="steps">{steps}</div>
-</div></section>
-
-<section><div class="wrap why">
- <div class="reveal"><div class="eyebrow">Why UBM</div><h2>Twenty-five years of getting the details right</h2>
-  <p class="lead">Since 1997, our team of pro AV professionals, system designers and technology managers has worked with dealers and organisations across India. Many of our key people have been with us from the beginning — the experience shows up on every project.</p>
-  <ul class="checks">
-   <li><strong>Design-led, not catalogue-led</strong>We recommend what suits the room and the budget, across brands.</li>
-   <li><strong>Interoperability and standards</strong>Systems built to work together today and scale tomorrow.</li>
-   <li><strong>Local support from Mumbai</strong>Service, spares and training from a team you can reach.</li>
-  </ul>
-  <a class="btn btn-navy" style="margin-top:28px" href="about-us/">Our story</a></div>
- <div class="stat-grid reveal">
-  <div class="stat"><strong>1997</strong><span>Year founded — over a quarter-century in pro AV</span></div>
-  <div class="stat"><strong>{len(BRANDS)}</strong><span>Global brands across display, audio and signal management</span></div>
-  <div class="stat"><strong>{len(SOLUTIONS)}</strong><span>Solution families from classrooms to stadiums</span></div>
-  <div class="stat"><strong>Pan-India</strong><span>Supported directly and through our partner network</span></div>
- </div>
-</div></section>
-
 <section class="alt"><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">Industries</div><h2>Trusted across sectors</h2></div></div>
- <div class="grid g4">{inds}</div>
-</div></section>
-
-<section><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">Insights</div><h2>Guides from 25 years in AV</h2><p class="lead">Practical, vendor-neutral advice for buyers, consultants and integrators.</p></div><a class="link-arrow" href="blog/">All insights</a></div>
+ <div class="sec-head"><div><div class="eyebrow">Insights</div><h2>Guides from 25+ years in AV</h2><p class="lead">Practical, vendor-neutral advice for buyers, consultants and integrators.</p></div><a class="btn btn-ghost" href="blog/">All insights →</a></div>
  <div class="grid g3">{posts}</div>
 </div></section>
 
-<section class="alt"><div class="wrap">{faq_block(GENERAL_FAQS[:5], "Questions buyers ask us")}</div></section>
+<section><div class="wrap">{faq_block(GENERAL_FAQS[:5], "Questions buyers ask us")}</div></section>
 {cta_band(r)}'''
     page("", "Pro AV Distributor in Mumbai & India Since 1997 | UBM",
          "Mumbai-based value-added pro AV distributor since 1997: Epson, Bose, ATEN, Liberty AV, BenQ, ViewSonic & TOA. Smart classrooms, boardrooms, video walls & more.",
@@ -388,9 +426,6 @@ def planner():
 </div></section>'''
 
 
-def post_card(r, p):
-    return f'''<a class="card post reveal" href="{r}blog/{p["slug"]}/"><span class="post-meta mono">{e(p["cat"])} · {p["read"]} min read</span><h3>{e(p["title"])}</h3><p>{e(p["desc"])}</p><span class="link-arrow">Read guide</span></a>'''
-
 
 def related_brands(r, slugs):
     return "".join(logo_tile(r, BR[s]) for s in slugs if s in BR)
@@ -398,7 +433,7 @@ def related_brands(r, slugs):
 
 def build_solutions():
     r = rel(1)
-    cards = "".join(f'''<a class="card reveal" href="{r}solutions/{s["slug"]}/"><div class="icon">{ICONS[s["icon"]]}</div><h3>{e(s["name"])}</h3><p>{e(s["intro"])}</p><span class="link-arrow">Explore</span></a>''' for s in SOLUTIONS)
+    cards = "".join(sol_card(r, s) for s in SOLUTIONS)
     body = page_hero(r, [("Solutions", "solutions/")], "AV solutions for every kind of space", "From a single huddle room to an entire campus — designed, supplied, installed and supported by UBM.", "Solutions") + f'<section><div class="wrap"><div class="grid g3">{cards}</div></div></section>' + hub_extra(*HUBS["solutions"]) + cta_band(r)
     page("solutions/", "Pro AV Solutions for Every Space | UBM Mumbai", "Explore UBM's professional AV solutions: smart classrooms, boardroom AV, video walls, auditorium sound, AV over IP and public address systems.", body, "solutions", schemas=(faq_schema(HUBS["solutions"][1]), crumbs_schema([("Home", ""), ("Solutions", "solutions/")])), priority="0.9")
     for s in SOLUTIONS:
@@ -411,6 +446,7 @@ def build_solutions():
         body = page_hero(r, [("Solutions", "solutions/"), (s["name"], path)], s["h1"], s["intro"], s["name"]) + f'''
 <section><div class="wrap content">
  <article class="prose">
+  <img class="feature-img" src="{U(IMG[s["slug"]], 1400)}" alt="{e(s["name"])} by UBM" loading="lazy">
   <div class="answer"><b>In short</b><p>{e(s["answer"])} UBM has served customers from Mumbai since 1997.</p></div>
   <h2>What's included</h2><ul>{inc}</ul>
   {sections}
@@ -436,7 +472,7 @@ def build_industries():
         r = rel(2)
         path = f'industries/{i["slug"]}/'
         needs = "".join(f"<li>{e(x)}</li>" for x in i["needs"])
-        sols = "".join(f'''<a class="card reveal" href="{r}solutions/{s}/"><div class="icon">{ICONS[SOL[s]["icon"]]}</div><h3>{e(SOL[s]["name"])}</h3><p>{e(SOL[s]["intro"])}</p><span class="link-arrow">Explore</span></a>''' for s in i["solutions"])
+        sols = "".join(sol_card(r, SOL[s]) for s in i["solutions"])
         body = page_hero(r, [("Industries", "industries/" + i["slug"] + "/"), (i["name"], path)], i["h1"], i["intro"], i["name"]) + f'''
 <section><div class="wrap content">
  <article class="prose"><div class="answer"><b>In short</b><p>{e(i["answer"])} UBM has supported customers from Mumbai since 1997.</p></div><h2>What {e(i["name"].lower())} clients ask us for</h2><ul>{needs}</ul></article>
@@ -447,14 +483,14 @@ def build_industries():
         page(path, i["title"], i["desc"], body, "", schemas=(faq_schema(i["faqs"]), crumbs_schema([("Home", ""), (i["name"], path)])), priority="0.8")
     # hub
     r = rel(1)
-    cards = "".join(f'''<a class="card reveal" href="{r}industries/{i["slug"]}/"><div class="icon">{ICONS[i["icon"]]}</div><h3>{e(i["name"])}</h3><p>{e(i["intro"])}</p><span class="link-arrow">See how we help</span></a>''' for i in INDUSTRIES)
+    cards = "".join(ind_card(r, i) for i in INDUSTRIES)
     page("industries/", "Industries We Serve | AV for Education & Business | UBM", "UBM delivers professional AV for education, corporate, hospitality, places of worship, stadiums, home theatre and retail.",
          page_hero(r, [("Industries", "industries/")], "AV expertise across industries", "Every sector has different rooms, users and priorities. We design for yours.", "Industries") + f'<section><div class="wrap"><div class="grid g3">{cards}</div></div></section>' + hub_extra(*HUBS["industries"]) + cta_band(r), schemas=(faq_schema(HUBS["industries"][1]), crumbs_schema([("Home", ""), ("Industries", "industries/")])), priority="0.8")
 
 
 def build_brands():
     r = rel(1)
-    cards = "".join(f'''<a class="card reveal" href="{r}{b["slug"]}/"><div style="margin-bottom:22px">{logo_tile(r, b).replace("<a ", "<span ").replace("</a>", "</span>")}</div><h3>{e(b["name"])}</h3><p>{e(b["intro"])}</p><span class="link-arrow">View range</span></a>''' for b in BRANDS)
+    cards = "".join(brand_card(r, b) for b in BRANDS)
     page("brands/", "Pro AV Brands We Distribute in India | UBM",
          "UBM distributes leading pro AV brands in India — Epson, Bose Professional, ATEN, Liberty AV Solutions, ViewSonic, BenQ and TOA.",
          page_hero(r, [("Brands", "brands/")], "Global brands, local expertise", "A complementary portfolio across display, projection, audio, signal management and connectivity.", "Brands") + f'<section><div class="wrap"><div class="grid g3">{cards}</div></div></section>' + hub_extra(*HUBS["brands"]) + cta_band(r), "", schemas=(faq_schema(HUBS["brands"][1]), crumbs_schema([("Home", ""), ("Brands", "brands/")])), priority="0.8")
@@ -488,6 +524,7 @@ def build_blog():
 <section><div class="wrap content">
  <article class="prose">
   <p class="post-byline mono">By the UBM Solutions Team · Updated {p["date"]}</p>
+  <img class="feature-img" src="{U(IMG.get(p["slug"], IMG["blog"]), 1400)}" alt="" loading="lazy">
   <div class="answer"><b>Quick answer</b><p>{e(p["summary"])} This guide is from UBM (Universal Business Machines), a Mumbai-based pro AV distributor since 1997.</p></div>
   {md(p["body"], r)}
   {faq_block(p["faqs"], "FAQs")}

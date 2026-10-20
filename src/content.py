@@ -308,3 +308,60 @@ GENERAL_FAQS = [
     ("How do I get a quote from UBM?", "Use the project enquiry form on this website, WhatsApp +91 98202 93108, call 022 2647 5639 or +91 98202 93108, or email connect@ubm.co.in or balraj@ubm.co.in. Share your room sizes and requirements and UBM will respond with a proposal."),
     ("Can I become a UBM dealer partner?", "Yes. UBM welcomes AV dealers and system integrators. Visit the Dealer Partners page to apply."),
 ]
+
+# ---------------------------------------------------------------- PHOTOGRAPHY (Unsplash licence — free for commercial use)
+def U(pid, w=1400):
+    return f"https://images.unsplash.com/photo-{pid}?auto=format&fit=crop&w={w}&q=70"
+
+HERO_SLIDES = [
+    ("1587825140708-dfaf72ae4b04", "Auditorium sound & vision", "Speech-clear sound and large-format projection for every seat."),
+    ("1542744173-8e7e53415bb0", "Boardrooms that just work", "One-touch meetings, crystal-clear conferencing, wireless sharing."),
+    ("1524178232363-1fb2b075b655", "Smart classrooms", "Interactive learning that teachers actually use, every day."),
+]
+IMG = {
+    # solutions
+    "smart-classroom-solutions": "1524178232363-1fb2b075b655",
+    "boardroom-meeting-room-av-solutions": "1431540015161-0bf868a2d407",
+    "video-wall-solutions": "1712619221708-c50fbf2d6fcf",
+    "auditorium-av-solutions": "1594122230689-45899d9e6f69",
+    "av-over-ip-media-distribution": "1783461241044-8e8bb7e66808",
+    "public-address-pa-systems": "1561314105-e6ac04c2984a",
+    # industries
+    "education": "1606761568499-6d2451b23c66",
+    "corporate": "1777264935754-aa53096c2d68",
+    "hospitality": "1519167758481-83f550bb49b3",
+    "places-of-worship": "1519452575417-564c1401ecc0",
+    "stadiums-sports-venues": "1779449607463-7cf4a2c8973c",
+    "home-theatre": "1710131459450-7c384b8be18f",
+    "retail": "1764795850248-97a5e986b242",
+    # brands
+    "epson": "1535016120720-40c646be5580",
+    "bose": "1563680401337-b77b5e0be9f7",
+    "aten": "1643199121319-b3b5695e4acb",
+    "liberty-av-solutions": "1773410124913-a1a5786ce519",
+    "viewsonic": "1738308508484-2a5226b4208d",
+    "benq": "1528395874238-34ebe249b3f2",
+    "toa": "1724858103797-6d388eb1006a",
+    # pages
+    "about": "1610374792793-f016b77ca51a",
+    "partners": "1779700210487-a01758a3c55a",
+    "contact": "1571624436279-b272aff752b5",
+    "blog": "1483000805330-4eaf0a0d82da",
+    "about2": "1618609377864-68609b857e90",
+    "cta": "1613210434051-4b00d62d03fb",
+    # blog posts
+    "smart-classroom-setup-guide-india": "1580582932707-520aed937b7b",
+    "interactive-flat-panel-vs-projector": "1768502171609-a51a20ea027a",
+    "what-is-av-over-ip": "1525022404438-91321710652d",
+    "boardroom-av-video-conferencing-checklist": "1777264935754-aa53096c2d68",
+    "auditorium-sound-system-design-guide": "1763962274119-1a0a0d418520",
+    "how-to-choose-pro-av-distributor-india": "1610374792793-f016b77ca51a",
+    "led-vs-lcd-video-wall": "1762417582191-e69cd1cb0609",
+    "video-wall-cost-factors-india": "1776333089054-bfed3bd9a1f4",
+    "laser-vs-lamp-projector": "1762541693135-fb989de961e1",
+    "huddle-room-setup-guide": "1571624436279-b272aff752b5",
+    "public-address-system-guide": "1645536729479-83c35cb5411d",
+    "kvm-switch-guide": "1643199121319-b3b5695e4acb",
+    "wireless-presentation-systems-byod": "1542744173-8e7e53415bb0",
+    "hotel-banquet-av-checklist": "1776671069226-24e6d422a61b",
+}

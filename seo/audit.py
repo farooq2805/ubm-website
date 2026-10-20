@@ -32,7 +32,7 @@ class Page(HTMLParser):
         elif tag == "h2": self.h2 += 1
         elif tag == "meta" and (a.get("name") or a.get("property")): self.meta[(a.get("name") or a.get("property")).lower()] = a.get("content", "")
         elif tag == "link" and a.get("rel") == "canonical": self.canonical = a.get("href", "")
-        elif tag == "img" and not a.get("alt"): self.imgs_no_alt += 1
+        elif tag == "img" and "alt" not in a: self.imgs_no_alt += 1  # alt="" is valid for decorative images
         elif tag == "a" and a.get("href"): self.links.append(a["href"])
         if "answer" in (a.get("class") or "").split(): self.answer_block = True
 
