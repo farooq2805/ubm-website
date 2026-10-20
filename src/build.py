@@ -353,30 +353,41 @@ def build_home():
  </div>
 </div></section>
 
-<section id="hello"><div class="wrap hello">
- <div class="hello-num reveal"><strong>{years}</strong><span>years integrating sound, vision and technology across India</span></div>
- <div class="reveal"><p class="kicker">Hello, we are</p><h2>Universal Business Machines</h2>
-  <p class="lead">Founded in Mumbai in 1997, UBM is a value-added distributor of professional audio-visual technology. Our pro AV specialists, system designers and technology managers help dealers, integrators and organisations choose, deploy and support systems that simply work.</p>
-  <ul class="ticks"><li>Design-led consultation</li><li>{len(BRANDS)} global brands</li><li>Installation and commissioning</li><li>Maintenance and service</li><li>Dealer and integrator support</li><li>Training for every team</li></ul>
-  <div class="hero-actions" style="margin-top:0"><a class="btn btn-blue" href="about-us/">More about UBM</a><a class="btn btn-ghost" href="tel:{SITE["phone_tel"]}">Call {SITE["phone_display"]}</a></div></div>
+<section id="about"><div class="wrap partner">
+ <div class="partner-media reveal"><img src="{U(IMG["about"], 1100)}" alt="UBM team with clients in a conference room" loading="lazy"><div class="partner-badge"><strong>{years} years</strong><span>of professional AV across India, since 1997</span></div></div>
+ <div class="reveal"><p class="kicker">About UBM</p><h2>Your partner in professional AV excellence</h2>
+  <p class="lead">Universal Business Machines is a Mumbai-based value-added distributor of professional audio-visual technology. Since 1997 our system designers and AV specialists have helped dealers, integrators and organisations choose, deploy and support systems that perform for years.</p>
+  <div class="pillars">
+   <div class="pillar"><span class="icon">{ICONS["shield"]}</span><div><h3>Expertise and experience</h3><p>Nearly three decades of designing and supplying AV for Indian spaces.</p></div></div>
+   <div class="pillar"><span class="icon">{ICONS["handshake"]}</span><div><h3>Client and partner centric</h3><p>Vendor-neutral advice for end customers, and design support for dealers.</p></div></div>
+   <div class="pillar"><span class="icon">{ICONS["service"]}</span><div><h3>Commitment to service</h3><p>Installation, training and maintenance from a team you can reach.</p></div></div>
+  </div>
+  <div class="hero-actions" style="margin-top:0"><a class="btn btn-blue" href="about-us/">Read more about UBM</a><a class="btn btn-ghost" href="contact/#enquiry">Consult now</a></div></div>
 </div></section>
 
-{marquee(r)}
-
 <section class="alt"><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">What we deliver</div><h2>Turnkey AV solutions for every space</h2><p class="lead">From a single huddle room to an entire campus, designed around the people who use it and the people who maintain it.</p></div><a class="btn btn-ghost" href="solutions/">All solutions →</a></div>
+ <div class="sec-head"><div><div class="eyebrow">What we deliver</div><h2>We deliver turnkey AV solutions</h2><p class="lead">From a single huddle room to an entire campus, designed around the people who use it and the people who maintain it.</p></div><a class="btn btn-ghost" href="solutions/">All solutions →</a></div>
  <div class="grid g3 m-swipe">{sols}</div>
 </div></section>
 
+<section class="numbers" aria-label="UBM in numbers"><div class="wrap">
+ <div><strong data-count="{years}">{years}</strong><span>Years in professional AV</span></div>
+ <div><strong data-count="{len(BRANDS)}">{len(BRANDS)}</strong><span>Global brands distributed</span></div>
+ <div><strong data-count="{len(INDUSTRIES)}">{len(INDUSTRIES)}</strong><span>Industries served</span></div>
+ <div><strong data-count="6">6</strong><span>End-to-end services</span></div>
+</div></section>
+
 <section><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">Spaces we transform</div><h2>AV built for the way your sector works</h2></div><div class="car-btns"><button type="button" data-car="-1" aria-label="Previous">←</button><button type="button" data-car="1" aria-label="Next">→</button></div></div>
- <div class="carousel"><div class="track" id="spaces">{spaces}</div></div>
+ <div class="sec-head center"><div><div class="eyebrow">Our services</div><h2>From consultation to long-term support</h2><p class="lead">From the first drawing to years after handover, UBM stays with the project.</p></div></div>
+ <div class="grid g3 m-tiles">{svcs}</div>
 </div></section>
 
 <section class="alt"><div class="wrap">
- <div class="sec-head center"><div><div class="eyebrow">Our services</div><h2>Six services. One accountable partner.</h2><p class="lead">From the first drawing to years after handover, UBM stays with the project.</p></div></div>
- <div class="grid g3 m-tiles">{svcs}</div>
+ <div class="sec-head"><div><div class="eyebrow">Specialised spaces</div><h2>AV designed for the way your sector works</h2></div><div class="car-btns"><button type="button" data-car="-1" aria-label="Previous">←</button><button type="button" data-car="1" aria-label="Next">→</button></div></div>
+ <div class="carousel"><div class="track" id="spaces">{spaces}</div></div>
 </div></section>
+
+{marquee(r)}
 
 <section><div class="wrap">
  <div class="split">
@@ -387,15 +398,14 @@ def build_home():
  </div>
 </div></section>
 
-{planner()}
-
 <section class="alt"><div class="wrap">
  <div class="sec-head"><div><div class="eyebrow">From our blog</div><h2>Guides for Indian schools, offices and venues</h2><p class="lead">Practical, vendor-neutral advice for buyers, consultants and integrators.</p></div><a class="btn btn-ghost" href="blog/">Read the blog</a></div>
  <div class="grid g3 m-swipe">{posts}</div>
 </div></section>
 
 <section><div class="wrap">{faq_block(GENERAL_FAQS[:5], "Questions buyers ask us")}</div></section>
-{cta_band(r)}'''
+
+{lead_section(r, "your AV project")}'''
     page("", "Pro AV Distributor in Mumbai & India Since 1997 | UBM",
          "Mumbai-based value-added pro AV distributor since 1997: Epson, Bose, ATEN, Liberty AV, BenQ, ViewSonic & TOA. Smart classrooms, boardrooms, video walls & more.",
          body, schemas=(faq_schema(GENERAL_FAQS[:5]), {"@context": "https://schema.org", "@type": "WebSite", "name": "UBM, Universal Business Machines", "url": BASE + "/"}), depth=0, priority="1.0")
