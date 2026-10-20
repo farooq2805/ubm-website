@@ -330,7 +330,7 @@ IMG = {
     "education": "1606761568499-6d2451b23c66",
     "corporate": "1777264935754-aa53096c2d68",
     "hospitality": "1519167758481-83f550bb49b3",
-    "places-of-worship": "1519452575417-564c1401ecc0",
+    "places-of-worship": "1760770537788-9ee9aa917372",  # people praying inside a Hindu temple (India)
     "stadiums-sports-venues": "1779449607463-7cf4a2c8973c",
     "home-theatre": "1710131459450-7c384b8be18f",
     "retail": "1764795850248-97a5e986b242",
