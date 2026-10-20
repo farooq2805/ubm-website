@@ -1,7 +1,7 @@
 {
  "date": "2026-10-20",
  "target": "docs",
- "average": 97.5,
+ "average": 97.0,
  "site": {
   "robots.txt": true,
   "llms.txt": true,
@@ -27,7 +27,7 @@
    "url": "aten/index.html",
    "score": 100,
    "title": "ATEN KVM Switch Distributor in Mumbai | UBM",
-   "words": 487,
+   "words": 634,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -42,7 +42,7 @@
    "url": "benq/index.html",
    "score": 100,
    "title": "BenQ Projector Distributor in Mumbai | UBM",
-   "words": 468,
+   "words": 615,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -57,7 +57,7 @@
    "url": "blog/auditorium-sound-system-design-guide/index.html",
    "score": 93,
    "title": "Auditorium Sound System Design: What Schools, Colleges & Corporates Should Know",
-   "words": 861,
+   "words": 1036,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -72,10 +72,28 @@
    ]
   },
   {
+   "url": "blog/best-speakers-for-hall-auditorium-india/index.html",
+   "score": 93,
+   "title": "Which Speakers Are Best for a Hall or Auditorium? A Guide for Indian Institutions",
+   "words": 1103,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Title length 81 (aim 30\u201365)",
+    "Meta description length 184 (aim 110\u2013165)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
    "url": "blog/boardroom-av-video-conferencing-checklist/index.html",
    "score": 97,
    "title": "Boardroom AV & Video Conferencing Setup: A 12-Point Checklist",
-   "words": 857,
+   "words": 1031,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -89,10 +107,45 @@
    ]
   },
   {
+   "url": "blog/do-smart-classrooms-improve-learning-india/index.html",
+   "score": 96,
+   "title": "Do Smart Classrooms Actually Improve Learning? What Indian Teachers Need",
+   "words": 1055,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Title length 72 (aim 30\u201365)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
+   "url": "blog/home-theatre-setup-guide-india/index.html",
+   "score": 93,
+   "title": "Home Theatre Setup in India: Projector, Screen and Sound Planning Guide",
+   "words": 1146,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Title length 71 (aim 30\u201365)",
+    "Meta description length 168 (aim 110\u2013165)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
    "url": "blog/hotel-banquet-av-checklist/index.html",
    "score": 100,
    "title": "Hotel Banquet & Ballroom AV Checklist | UBM",
-   "words": 746,
+   "words": 916,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -105,10 +158,28 @@
    ]
   },
   {
+   "url": "blog/how-to-choose-audio-visual-company-india/index.html",
+   "score": 93,
+   "title": "How to Choose an Audio Visual Company in India: 10 Questions to Ask",
+   "words": 1064,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Title length 67 (aim 30\u201365)",
+    "Meta description length 169 (aim 110\u2013165)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
    "url": "blog/how-to-choose-pro-av-distributor-india/index.html",
    "score": 93,
    "title": "How to Choose a Pro AV Distributor in India: A Guide for Dealers & Integrators",
-   "words": 858,
+   "words": 1037,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -118,15 +189,15 @@
    ],
    "issues": [
     "Title length 78 (aim 30\u201365)",
-    "Meta description length 196 (aim 110\u2013165)",
+    "Meta description length 195 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
   {
-   "url": "blog/huddle-room-setup-guide/index.html",
-   "score": 97,
-   "title": "Huddle Room Setup Guide: Small Meeting Rooms That Just Work | UBM",
-   "words": 800,
+   "url": "blog/how-to-set-up-video-conferencing-meeting-room-india/index.html",
+   "score": 93,
+   "title": "How to Set Up Video Conferencing in a Meeting Room: A Practical Guide for Indian Offices",
+   "words": 1125,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -135,15 +206,50 @@
     "Organization"
    ],
    "issues": [
-    "Meta description length 168 (aim 110\u2013165)",
+    "Title length 88 (aim 30\u201365)",
+    "Meta description length 169 (aim 110\u2013165)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
+   "url": "blog/how-to-size-pa-system-for-room/index.html",
+   "score": 96,
+   "title": "How to Size a PA System for a Room: Offices, Schools and Halls in India",
+   "words": 1043,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Title length 71 (aim 30\u201365)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
+   "url": "blog/huddle-room-setup-guide/index.html",
+   "score": 97,
+   "title": "Huddle Room Setup Guide: Small Meeting Rooms That Just Work | UBM",
+   "words": 978,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Meta description length 167 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
   {
    "url": "blog/index.html",
    "score": 100,
-   "title": "AV Insights & Buying Guides | UBM Blog",
-   "words": 1073,
+   "title": "AV Blog: Guides for Schools, Offices & Venues in India | UBM",
+   "words": 1428,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -158,7 +264,7 @@
    "url": "blog/interactive-flat-panel-vs-projector/index.html",
    "score": 93,
    "title": "Interactive Flat Panel vs Projector: Which Is Right for Your Classroom or Boardroom?",
-   "words": 931,
+   "words": 1117,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -176,7 +282,7 @@
    "url": "blog/kvm-switch-guide/index.html",
    "score": 97,
    "title": "What Is a KVM Switch? Types and How to Choose One | UBM",
-   "words": 785,
+   "words": 961,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -185,7 +291,7 @@
     "Organization"
    ],
    "issues": [
-    "Meta description length 183 (aim 110\u2013165)",
+    "Meta description length 182 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
@@ -193,7 +299,7 @@
    "url": "blog/laser-vs-lamp-projector/index.html",
    "score": 96,
    "title": "Laser vs Lamp Projectors: Which Is Better for Schools and Offices?",
-   "words": 815,
+   "words": 995,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -210,7 +316,7 @@
    "url": "blog/led-vs-lcd-video-wall/index.html",
    "score": 97,
    "title": "LED vs LCD Video Wall: Which Should You Choose? | UBM",
-   "words": 931,
+   "words": 1107,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -227,7 +333,7 @@
    "url": "blog/public-address-system-guide/index.html",
    "score": 93,
    "title": "Public Address (PA) Systems Explained: Types, Components and Planning",
-   "words": 802,
+   "words": 984,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -245,7 +351,7 @@
    "url": "blog/smart-classroom-setup-guide-india/index.html",
    "score": 93,
    "title": "Smart Classroom Setup in India: Complete Equipment List & Cost Factors",
-   "words": 1064,
+   "words": 1247,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -263,7 +369,7 @@
    "url": "blog/video-wall-cost-factors-india/index.html",
    "score": 97,
    "title": "Video Wall Price in India: 7 Factors That Decide the Cost | UBM",
-   "words": 905,
+   "words": 1084,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -272,7 +378,7 @@
     "Organization"
    ],
    "issues": [
-    "Meta description length 178 (aim 110\u2013165)",
+    "Meta description length 176 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
@@ -280,7 +386,7 @@
    "url": "blog/what-is-av-over-ip/index.html",
    "score": 93,
    "title": "What Is AV over IP? A Practical Guide for Indian Enterprises & Campuses",
-   "words": 933,
+   "words": 1110,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -295,10 +401,28 @@
    ]
   },
   {
+   "url": "blog/why-indian-schools-switching-to-interactive-flat-panels/index.html",
+   "score": 93,
+   "title": "Why Indian Schools Are Switching from Smart Boards to Interactive Flat Panels",
+   "words": 1197,
+   "schema": [
+    "BlogPosting",
+    "BreadcrumbList",
+    "FAQPage",
+    "LocalBusiness",
+    "Organization"
+   ],
+   "issues": [
+    "Title length 77 (aim 30\u201365)",
+    "Meta description length 176 (aim 110\u2013165)",
+    "NOTE: page is noindex (expected on staging only)"
+   ]
+  },
+  {
    "url": "blog/wireless-presentation-systems-byod/index.html",
    "score": 96,
    "title": "Wireless Presentation Systems (BYOD): How They Work and Why Every Room Needs One",
-   "words": 784,
+   "words": 962,
    "schema": [
     "BlogPosting",
     "BreadcrumbList",
@@ -315,7 +439,7 @@
    "url": "bose/index.html",
    "score": 100,
    "title": "Bose Professional Audio Distributor Mumbai | UBM",
-   "words": 492,
+   "words": 639,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -392,7 +516,7 @@
    "url": "epson/index.html",
    "score": 100,
    "title": "Epson Projector Distributor in Mumbai | UBM",
-   "words": 506,
+   "words": 653,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -422,7 +546,7 @@
    "url": "index.html",
    "score": 96,
    "title": "Pro AV Distributor in Mumbai & India Since 1997 | UBM",
-   "words": 1399,
+   "words": 1343,
    "schema": [
     "FAQPage",
     "LocalBusiness",
@@ -438,7 +562,7 @@
    "url": "industries/corporate/index.html",
    "score": 100,
    "title": "Corporate AV Solutions in Mumbai | UBM",
-   "words": 557,
+   "words": 725,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -453,7 +577,7 @@
    "url": "industries/education/index.html",
    "score": 97,
    "title": "AV Solutions for Schools & Colleges in India | UBM",
-   "words": 571,
+   "words": 739,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -469,7 +593,7 @@
    "url": "industries/home-theatre/index.html",
    "score": 100,
    "title": "Home Theatre Design & Installation Mumbai | UBM",
-   "words": 526,
+   "words": 696,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -484,7 +608,7 @@
    "url": "industries/hospitality/index.html",
    "score": 100,
    "title": "Hotel & Banquet AV Solutions in India | UBM",
-   "words": 559,
+   "words": 727,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -514,7 +638,7 @@
    "url": "industries/places-of-worship/index.html",
    "score": 100,
    "title": "Sound & AV Systems for Places of Worship | UBM",
-   "words": 548,
+   "words": 720,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -529,7 +653,7 @@
    "url": "industries/retail/index.html",
    "score": 100,
    "title": "Retail AV & Digital Signage Solutions | UBM",
-   "words": 520,
+   "words": 688,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -544,7 +668,7 @@
    "url": "industries/stadiums-sports-venues/index.html",
    "score": 100,
    "title": "Stadium & Sports Venue AV Solutions | UBM",
-   "words": 570,
+   "words": 742,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -559,7 +683,7 @@
    "url": "liberty-av-solutions/index.html",
    "score": 100,
    "title": "Liberty AV Solutions Distributor India | UBM",
-   "words": 518,
+   "words": 665,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -574,7 +698,7 @@
    "url": "solutions/auditorium-av-solutions/index.html",
    "score": 97,
    "title": "Auditorium Sound System Installation Mumbai | UBM",
-   "words": 724,
+   "words": 892,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -591,7 +715,7 @@
    "url": "solutions/av-over-ip-media-distribution/index.html",
    "score": 97,
    "title": "AV over IP & Matrix Switching Solutions India | UBM",
-   "words": 728,
+   "words": 900,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -608,7 +732,7 @@
    "url": "solutions/boardroom-meeting-room-av-solutions/index.html",
    "score": 97,
    "title": "Boardroom & Meeting Room AV Solutions Mumbai | UBM",
-   "words": 741,
+   "words": 911,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -617,7 +741,7 @@
     "Service"
    ],
    "issues": [
-    "Meta description length 189 (aim 110\u2013165)",
+    "Meta description length 188 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
@@ -640,7 +764,7 @@
    "url": "solutions/public-address-pa-systems/index.html",
    "score": 97,
    "title": "PA Systems for Offices & Campuses in Mumbai | UBM",
-   "words": 674,
+   "words": 844,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -649,7 +773,7 @@
     "Service"
    ],
    "issues": [
-    "Meta description length 179 (aim 110\u2013165)",
+    "Meta description length 178 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
@@ -657,7 +781,7 @@
    "url": "solutions/smart-classroom-solutions/index.html",
    "score": 97,
    "title": "Smart Classroom Solutions in Mumbai & India | UBM",
-   "words": 798,
+   "words": 966,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -666,7 +790,7 @@
     "Service"
    ],
    "issues": [
-    "Meta description length 205 (aim 110\u2013165)",
+    "Meta description length 204 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
@@ -674,7 +798,7 @@
    "url": "solutions/video-wall-solutions/index.html",
    "score": 97,
    "title": "Video Wall Solutions in Mumbai | LED & LCD | UBM",
-   "words": 746,
+   "words": 914,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -683,7 +807,7 @@
     "Service"
    ],
    "issues": [
-    "Meta description length 183 (aim 110\u2013165)",
+    "Meta description length 182 (aim 110\u2013165)",
     "NOTE: page is noindex (expected on staging only)"
    ]
   },
@@ -691,7 +815,7 @@
    "url": "toa/index.html",
    "score": 100,
    "title": "TOA PA System Dealer in Mumbai | UBM",
-   "words": 470,
+   "words": 617,
    "schema": [
     "BreadcrumbList",
     "FAQPage",
@@ -706,7 +830,7 @@
    "url": "viewsonic/index.html",
    "score": 100,
    "title": "ViewSonic Interactive Displays Mumbai | UBM",
-   "words": 466,
+   "words": 613,
    "schema": [
     "BreadcrumbList",
     "FAQPage",

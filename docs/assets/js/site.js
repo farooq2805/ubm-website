@@ -45,7 +45,7 @@
       s: [["Display", "55–65\" display"], ["Conferencing", "All-in-one video bar"], ["Sharing", "One-click wireless presentation"], ["Control", "Teams/Zoom room controller"]],
       m: [["Display", "75–86\" display or dual displays"], ["Camera", "Auto-framing PTZ camera"], ["Audio", "Ceiling microphone + conferencing loudspeakers"], ["Sharing", "Wireless BYOD + HDMI/USB-C table box"]],
       l: [["Display", "Video wall or laser projection + confidence monitors"], ["Camera", "Dual cameras with speaker tracking"], ["Audio", "Beamforming ceiling mics, DSP, Bose Professional speakers"], ["Signal", "Matrix switching, extenders, touch control"]],
-      brands: ["Bose Professional", "ATEN", "Liberty AV", "BenQ", "ViewSonic"], hint: "Audio is the #1 driver of meeting quality — we design it first." },
+      brands: ["Bose Professional", "ATEN", "Liberty AV", "BenQ", "ViewSonic"], hint: "Audio is the #1 driver of meeting quality - we design it first." },
     auditorium: { name: "auditorium", sol: "Auditorium AV & Sound",
       s: [["Display", "Laser projector, 150\" screen"], ["Audio", "Left/right loudspeakers + subwoofer"], ["Mics", "Lectern + 2 wireless mics"], ["Mixing", "Compact digital mixer"]],
       m: [["Display", "High-brightness laser projector or LED screen"], ["Audio", "Main + fill loudspeakers designed for even coverage"], ["Mics", "Lectern, wireless handheld and lapel set"], ["Control", "Digital mixer, stage box, presets for common events"]],
@@ -55,7 +55,7 @@
       s: [["Display", "2×2 narrow-bezel LCD video wall"], ["Content", "Media player with scheduling"], ["Audio", "Zoned background music"], ["Mounting", "Wall-mount, service access"]],
       m: [["Display", "3×3 LCD wall or fine-pitch LED"], ["Processing", "Video wall processor with layouts"], ["Audio", "Zoned background music"], ["Distribution", "Content routed from any source"]],
       l: [["Display", "Large fine-pitch LED or laser projection mapping"], ["Processing", "Multi-window processor"], ["Distribution", "AV-over-IP to multiple walls/floors"], ["Control", "Tablet control of layouts and content"]],
-      brands: ["Epson", "ViewSonic", "BenQ", "TOA"], hint: "Viewing distance decides LCD vs LED — we'll calculate it for you." },
+      brands: ["Epson", "ViewSonic", "BenQ", "TOA"], hint: "Viewing distance decides LCD vs LED - we'll calculate it for you." },
     campus: { name: "campus / building", sol: "AV over IP & Media Distribution",
       s: [["Distribution", "HDMI matrix for a few rooms"], ["Audio", "Zoned PA and paging"], ["Control", "Central scheduler"], ["Support", "Preventive maintenance plan"]],
       m: [["Distribution", "AV-over-IP encoders/decoders"], ["Audio", "Zoned PA + background music"], ["Signage", "Displays across common areas"], ["Support", "AMC with on-site service"]],
@@ -70,7 +70,7 @@
     $("#pl-list").innerHTML = p[state.size].map(function (r, i) { return '<li style="animation-delay:' + i * 60 + 'ms"><b>' + r[0] + "</b><span>" + r[1] + "</span></li>"; }).join("");
     $("#pl-brands").innerHTML = p.brands.map(function (b) { return "<span>" + b + "</span>"; }).join("");
     $("#pl-hint").textContent = p.hint;
-    var msg = "Planner: " + SIZE[state.size] + " " + p.name + " — " + p[state.size].map(function (r) { return r[0] + ": " + r[1]; }).join("; ");
+    var msg = "Planner: " + SIZE[state.size] + " " + p.name + " - " + p[state.size].map(function (r) { return r[0] + ": " + r[1]; }).join("; ");
     $("#pl-cta").href = "contact/?solution=" + encodeURIComponent(p.sol) + "&plan=" + encodeURIComponent(msg) + "#enquiry";
   }
   $$(".seg").forEach(function (g) {
@@ -137,4 +137,28 @@
   // Header shadow on scroll
   var h = document.querySelector(".site-header");
   addEventListener("scroll", function () { if (h) h.classList.toggle("scrolled", scrollY > 10); }, { passive: true });
+})();
+(function () {
+  // Loader: count 1997 -> current year once per session
+  var html = document.documentElement, y = document.getElementById("loader-year");
+  if (html.classList.contains("intro")) {
+    try { sessionStorage.setItem("ubm-intro", "1"); } catch (_) {}
+    if (y) { var a = 1997, b = new Date().getFullYear(), t0 = performance.now();
+      (function tick(t) { var p = Math.min((t - t0) / 1150, 1); y.textContent = Math.round(a + (b - a) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); })(t0); }
+    setTimeout(function () { html.classList.remove("intro"); }, 2900);
+  }
+  // Hero showreel: play clips in sequence, caption links to the matching solution
+  var v = document.getElementById("reel");
+  if (v) {
+    var list = []; try { list = JSON.parse(v.getAttribute("data-reel")); } catch (_) {}
+    var i = 0, cap = document.getElementById("reel-cap"), txt = document.getElementById("reel-text");
+    var root = cap ? cap.getAttribute("href").replace(/solutions\/.*$/, "") : "";
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); }
+    v.addEventListener("ended", function () {
+      if (!list.length) { v.play(); return; }
+      i = (i + 1) % list.length; v.src = list[i].src; v.play().catch(function () {});
+      if (txt) txt.textContent = list[i].cap; if (cap) cap.href = root + list[i].href;
+    });
+    v.addEventListener("error", function () { v.removeAttribute("src"); v.load(); }, true);
+  }
 })();
