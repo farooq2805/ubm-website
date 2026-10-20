@@ -34,7 +34,7 @@ class Page(HTMLParser):
         elif tag == "link" and a.get("rel") == "canonical": self.canonical = a.get("href", "")
         elif tag == "img" and "alt" not in a: self.imgs_no_alt += 1  # alt="" is valid for decorative images
         elif tag == "a" and a.get("href"): self.links.append(a["href"])
-        if "answer" in (a.get("class") or "").split(): self.answer_block = True
+        if {"answer", "story-lede"} & set((a.get("class") or "").split()): self.answer_block = True
 
     def handle_endtag(self, tag):
         if tag in ("script", "style"):

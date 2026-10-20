@@ -10,6 +10,7 @@ from content import SITE, ICONS, SERVICES, SOLUTIONS, INDUSTRIES, BRANDS, GENERA
 from blog import POSTS
 from blog_more import MORE_POSTS
 from blog_india import INDIA_POSTS
+from industry_stories import STORIES
 POSTS = sorted(POSTS + MORE_POSTS + INDIA_POSTS, key=lambda p: p["date"], reverse=True)
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -53,7 +54,7 @@ def md(text, r):
         elif line.startswith("### "):
             out.append(f"<h3>{line_html[4:]}</h3>")
         elif line.startswith("&gt; "):
-            out.append(f'<div class="answer"><b>Key takeaway</b><p>{line_html[5:]}</p></div>')
+            out.append(f'<p class="pull">{line_html[5:]}</p>')
         else:
             out.append(f"<p>{line_html}</p>")
     if ul:
@@ -225,7 +226,7 @@ def faq_block(faqs, title="Frequently asked questions"):
 
 
 def hub_extra(answer, faqs):
-    return f'<section class="alt"><div class="wrap content"><article class="prose"><div class="answer"><b>In short</b><p>{e(answer)}</p></div><h2>How UBM helps</h2><p>{e(answer)}</p></article></div></section><section><div class="wrap">{faq_block(faqs)}</div></section>'
+    return f'<section class="alt"><div class="wrap content"><article class="prose"><h2>How UBM helps</h2><p class="story-lede">{e(answer)}</p></article></div></section><section><div class="wrap">{faq_block(faqs)}</div></section>'
 
 
 
@@ -332,9 +333,11 @@ def build_home():
 <section class="hero hero-video" aria-label="Introduction">
  <video class="hero-bg" id="reel" autoplay muted playsinline preload="metadata" poster="{U(HERO_SLIDES[0][0], 1920)}" data-reel='{e(reel_js)}'><source src="https://assets.mixkit.co/videos/35336/35336-720.mp4" type="video/mp4"></video>
  <div class="wrap">
-  <h1 class="mega"><span>Sound, vision</span><span>and technology,</span><span>engineered since 1997.</span></h1>
-  <p class="lead">UBM designs, supplies, installs and supports professional AV for India's classrooms, boardrooms, auditoriums and venues.</p>
-  <div class="hero-actions"><a class="btn btn-coral" href="contact/#enquiry">Plan your project</a><a class="btn btn-glass" href="solutions/">See our solutions</a></div>
+  <h1 class="mega"><span>Classrooms, boardrooms</span><span>and halls that</span><span>just work.</span></h1>
+  <p class="lead">India's schools, offices, hotels and venues trust UBM to design, supply, install and service complete AV systems, with Epson, Bose Professional, BenQ, ViewSonic and more. One partner, from first drawing to years after handover.</p>
+  <div class="hero-actions"><a class="btn btn-coral" href="contact/#enquiry">Get a free proposal</a><a class="btn btn-glass" href="https://wa.me/{SITE["whatsapp"]}?text=Hi%20UBM%2C%20I%20need%20help%20with%20an%20AV%20project" target="_blank" rel="noopener">WhatsApp us now</a></div>
+  <div class="quick"><span>What do you need?</span>{"".join(f'<a href="contact/?solution={sl}#enquiry">{n}</a>' for sl, n in [("smart-classroom-solutions", "Smart classroom"), ("video-wall-solutions", "Video wall"), ("boardroom-meeting-room-av-solutions", "Boardroom"), ("auditorium-av-solutions", "Auditorium sound"), ("public-address-pa-systems", "PA system")])}</div>
+  <ul class="trust"><li><b>Since 1997</b> in Mumbai</li><li><b>{len(BRANDS)} global</b> brands</li><li><b>Reply</b> within one working day</li></ul>
  </div>
  <a class="reel-cap" id="reel-cap" href="solutions/video-wall-solutions/"><span class="reel-dot"></span><span id="reel-text">LED and video walls</span></a>
  <a class="scroll-cue" href="#hello" aria-label="Scroll to content"><span></span></a>
@@ -451,7 +454,7 @@ def build_solutions():
 <section><div class="wrap content">
  <article class="prose">
   <img class="feature-img" src="{U(IMG[s["slug"]], 1400)}" alt="{e(s["name"])} by UBM" loading="lazy">
-  <div class="answer"><b>In short</b><p>{e(s["answer"])} UBM has served customers from Mumbai since 1997.</p></div>
+  <p class="story-lede">{e(s["answer"])} UBM has served customers from Mumbai since 1997.</p>
   {convert_strip(r, s["name"].lower())}
   <h2>What's included</h2><ul>{inc}</ul>
   {sections}
@@ -476,17 +479,31 @@ def build_industries():
     for i in INDUSTRIES:
         r = rel(2)
         path = f'industries/{i["slug"]}/'
-        needs = "".join(f"<li>{e(x)}</li>" for x in i["needs"])
+        st = STORIES[i["slug"]]
         sols = "".join(sol_card(r, SOL[s]) for s in i["solutions"])
-        body = page_hero(r, [("Industries", "industries/" + i["slug"] + "/"), (i["name"], path)], i["h1"], i["intro"], i["name"]) + f'''
-<section><div class="wrap content">
- <article class="prose"><div class="answer"><b>In short</b><p>{e(i["answer"])} UBM has supported customers from Mumbai since 1997.</p></div>
-  {convert_strip(r, "AV for " + i["name"].lower())}<h2>What {e(i["name"].lower())} clients ask us for</h2><ul>{needs}</ul></article>
- <aside class="aside"><div class="aside-card dark"><h3>Talk to a {e(i["name"].lower())} AV specialist</h3><p>Tell us about your spaces and goals.</p><a class="btn btn-gold" href="{r}contact/#enquiry">Get a consultation</a></div></aside>
+        stats = "".join(f'''<div class="fact"><strong>{e(v)}</strong><p>{e(l)}</p><a href="{e(u)}" target="_blank" rel="noopener nofollow">Source: {e(src)}</a></div>''' if u else f'''<div class="fact"><strong>{e(v)}</strong><p>{e(l)}</p><span>Source: {e(src)}</span></div>''' for v, l, src, u in st["stats"])
+        pains = "".join(f'<div class="pain"><h3>{e(h)}</h3><p>{e(t)}</p></div>' for h, t in st["pains"])
+        fixes = "".join(f'<div class="fix"><span class="fix-n">{n + 1}</span><div><h3>{e(h)}</h3><p>{e(t)}</p></div></div>' for n, (h, t) in enumerate(st["fixes"]))
+        steps = "".join(f"<li>{e(x)}</li>" for x in st["project"])
+        faqs = st["faqs"] + i["faqs"]
+        topic = "AV for " + i["name"].lower()
+        body = page_hero(r, [("Industries", "industries/"), (i["name"], path)], i["h1"], i["intro"], i["name"]) + f'''
+<section class="story"><div class="wrap story-grid">
+ <div class="story-text"><p class="story-lede">{e(st["story"])}</p>{convert_strip(r, topic)}</div>
+ <div class="facts">{stats}</div>
 </div></section>
-<section class="alt"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Relevant solutions</div><h2>Solutions for {e(i["name"].lower())}</h2></div></div><div class="grid g2">{sols}</div></div></section>
-<section><div class="wrap">{faq_block(i["faqs"])}</div></section>{lead_section(r, "AV for " + i["name"].lower())}'''
-        page(path, i["title"], i["desc"], body, "", schemas=(faq_schema(i["faqs"]), crumbs_schema([("Home", ""), (i["name"], path)])), priority="0.8")
+<section class="alt"><div class="wrap">
+ <div class="sec-head"><div><p class="kicker">What goes wrong</p><h2>The problems we hear from {e(i["name"].lower())} teams</h2><p class="lead">Real questions and complaints from buyers on Reddit, Quora and in our own site visits.</p></div></div>
+ <div class="pains">{pains}</div>
+</div></section>
+<section><div class="wrap">
+ <div class="sec-head"><div><p class="kicker">How UBM fixes it</p><h2>What changes when UBM designs your space</h2></div></div>
+ <div class="fixes">{fixes}</div>
+ <div class="journey"><h3>How a UBM project runs</h3><ol>{steps}</ol></div>
+</div></section>
+<section class="alt"><div class="wrap"><div class="sec-head"><div><p class="kicker">Solutions</p><h2>Solutions for {e(i["name"].lower())}</h2></div></div><div class="grid g2 m-swipe">{sols}</div></div></section>
+<section><div class="wrap">{faq_block(faqs)}</div></section>{lead_section(r, topic)}'''
+        page(path, i["title"], i["desc"], body, "", schemas=(faq_schema(faqs), crumbs_schema([("Home", ""), ("Industries", "industries/"), (i["name"], path)])), priority="0.8")
     # hub
     r = rel(1)
     cards = "".join(ind_card(r, i) for i in INDUSTRIES)
@@ -509,7 +526,7 @@ def build_brands():
                 (f"How do I get a {b['name']} quote?", f"Send your requirement through the enquiry form, WhatsApp {SITE['mobile_display']} or email {SITE['email']}.")]
         ans = f"UBM (Universal Business Machines), a Mumbai-based value-added pro AV distributor since 1997, supplies {b['name']} products, " + ", ".join(n for n, _ in b["lines"]).lower() + f", to dealers, system integrators and organisations across India, with design, installation and after-sales support."
         body = page_hero(r, [("Brands", "brands/"), (b["name"], path)], f'{b["name"]}, supplied and supported by UBM', b["intro"], "Brand partner") + f'''
-<section><div class="wrap"><div class="answer"><b>In short</b><p>{e(ans)}</p></div></div></section>
+<section style="padding-bottom:0"><div class="wrap"><p class="story-lede" style="max-width:70ch">{e(ans)}</p></div></section>
 <section style="padding-top:0"><div class="wrap"><div class="sec-head"><div><div style="margin-bottom:18px">{logo_tile(r, b).replace("<a ", "<span ").replace("</a>", "</span>")}</div><h2>{e(b["name"])} product range</h2><p class="lead">Ask our team for specifications, availability and project pricing.</p></div></div><div class="grid g3">{lines}</div></div></section>
 <section><div class="wrap">{faq_block(faqs)}</div></section>{lead_section(r, b["name"] + " products")}'''
         page(path, b["title"], b["desc"], body, "", schemas=(faq_schema(faqs), crumbs_schema([("Home", ""), ("Brands", "brands/"), (b["name"], path)])), priority="0.8")
@@ -531,7 +548,7 @@ def build_blog():
  <article class="prose">
   <p class="post-byline mono">By the UBM Solutions Team · Updated {p["date"]}</p>
   <img class="feature-img" src="{U(IMG.get(p["slug"], IMG["blog"]), 1400)}" alt="" loading="lazy">
-  <div class="answer"><b>Quick answer</b><p>{e(p["summary"])} This guide is from UBM (Universal Business Machines), a Mumbai-based pro AV distributor since 1997.</p></div>
+  <p class="story-lede">{e(p["summary"])} This guide is from UBM (Universal Business Machines), a Mumbai-based pro AV distributor since 1997.</p>
   {md(p["body"], r)}
   {faq_block(p["faqs"], "FAQs")}
  </article>
