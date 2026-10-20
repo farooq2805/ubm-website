@@ -110,8 +110,9 @@
     });
   });
   function handoff(d, cfg) {
-    var lines = ["New AV enquiry (website)", "Role: " + d.role, "Name: " + d.name, "Organisation: " + d.company, "Phone: " + d.phone,
-      "Email: " + d.email, "Solution: " + (d.solution || "Not sure"), "City: " + d.city, "Rooms: " + d.rooms, "Timeline: " + d.timeline, "Details: " + d.message];
+    var f = [["Role", d.role], ["Name", d.name], ["Organisation", d.company], ["Phone", d.phone], ["Email", d.email], ["Need", d.need],
+      ["Solution", d.solution], ["City", d.city], ["Rooms", d.rooms], ["Timeline", d.timeline], ["Details", d.message], ["Page", d.page]];
+    var lines = ["New AV enquiry (website)"].concat(f.filter(function (x) { return x[1]; }).map(function (x) { return x[0] + ": " + x[1]; }));
     window.open("https://wa.me/" + cfg.wa + "?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
   }
 })();
@@ -173,4 +174,14 @@
       list.querySelectorAll(".pcard").forEach(function (c) { c.hidden = f !== "all" && c.getAttribute("data-cat") !== f; });
     });
   });
+})();
+
+(function () {
+  // Hero video wall: crossfade tiles in a gentle wave
+  var tiles = document.querySelectorAll(".vw-tile"); if (!tiles.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var pool = JSON.parse(document.querySelector(".vw").getAttribute("data-pool") || "[]"), n = 0;
+  setInterval(function () {
+    var t = tiles[n % tiles.length], img = t.querySelector("img"), next = pool[(n * 5 + 3) % pool.length];
+    t.classList.add("swap"); setTimeout(function () { img.src = next; t.classList.remove("swap"); }, 450); n++;
+  }, 1800);
 })();

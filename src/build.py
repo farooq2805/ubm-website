@@ -120,7 +120,7 @@ def nav(r, active):
   <div class="dd"><button type="button">Brands</button><div class="dd-menu">{br}<a href="{r}brands/"><b>All brands →</b></a></div></div>
   {a("dealer-partners/", "Partners", "partners")}
   {a("about-us/", "About", "about")}
-  {a("tools/av-calculators/", "AV Calculators", "tools")}
+  {a("tools/av-calculators/", "AV Tools", "tools")}
   {a("blog/", "Blog", "blog")}
   {a("contact/", "Contact", "contact")}
 </nav>'''
@@ -342,6 +342,9 @@ STAT_IC = {
 }
 
 
+VW_KEYS = ["auditorium-av-solutions", "video-wall-solutions", "education", "boardroom-meeting-room-av-solutions", "stadiums-sports-venues", "smart-classroom-solutions", "hospitality", "corporate", "places-of-worship", "retail", "home-theatre", "av-over-ip-media-distribution", "public-address-pa-systems", "cta", "about"]
+
+
 def build_home():
     r = rel(0)
     slides = "".join(f'<div class="hero-slide{" on" if n == 0 else ""}" data-cap="{e(t)}"><img src="{U(pid, 2000)}" alt="{e(t)}" {"fetchpriority=high" if n == 0 else "loading=lazy"}></div>' for n, (pid, t, _) in enumerate(HERO_SLIDES))
@@ -354,23 +357,35 @@ def build_home():
     reel = [("35336", "LED and video walls", "solutions/video-wall-solutions/"), ("11942", "Stage and auditorium AV", "solutions/auditorium-av-solutions/"), ("32591", "Event sound and lighting", "solutions/auditorium-av-solutions/")]
     reel_js = json.dumps([{"src": f"https://assets.mixkit.co/videos/{v}/{v}-720.mp4", "cap": c, "href": h} for v, c, h in reel])
     body = f'''
-<section class="hero2" aria-label="Introduction"><div class="wrap hero2-grid">
- <div class="hero2-copy">
-  <p class="pill"><span class="dot"></span>Value-added AV distributor, Mumbai, since 1997</p>
-  <h1>Classrooms, boardrooms and halls that just work.</h1>
-  <p class="lead">UBM designs, supplies, installs and services complete audio-visual systems for India's schools, offices, hotels and venues. One accountable partner, from first drawing to years after handover.</p>
-  <div class="hero-actions"><a class="btn btn-coral" href="contact/#enquiry">Get a free proposal</a><a class="btn btn-ghost" href="https://wa.me/{SITE["whatsapp"]}?text=Hi%20UBM%2C%20I%20need%20help%20with%20an%20AV%20project" target="_blank" rel="noopener">WhatsApp us now</a></div>
-  <div class="quick2"><span>What do you need?</span>{"".join(f'<a href="contact/?solution={sl}#enquiry">{n}</a>' for sl, n in [("smart-classroom-solutions", "Smart classroom"), ("video-wall-solutions", "Video wall"), ("boardroom-meeting-room-av-solutions", "Boardroom"), ("auditorium-av-solutions", "Auditorium sound"), ("public-address-pa-systems", "PA system")])}</div>
-  <div class="brandline"><span>Brands we supply</span><b>Epson</b><b>Bose Professional</b><b>BenQ</b><b>ViewSonic</b><b>ATEN</b><b>TOA</b></div>
+<section class="hero3" aria-label="Introduction">
+ <div class="vw" aria-hidden="true" data-pool='{e(json.dumps([U(IMG[k], 700) for k in VW_KEYS]))}'>{"".join(f'<div class="vw-tile"><img src="{U(IMG[k], 700)}" alt="" {"fetchpriority=high" if n < 4 else "loading=lazy"}></div>' for n, k in enumerate(VW_KEYS[:12]))}</div>
+ <div class="hero3-shade"></div>
+ <div class="wrap hero3-grid">
+  <div class="hero3-copy">
+   <p class="pill3"><span class="dot"></span>Trusted AV partner to Indian institutions since 1997</p>
+   <h1>AV that works from day one.<span class="h1-sub">Classrooms, boardrooms, auditoriums and venues across India.</span></h1>
+   <p class="lead">One partner to design, supply, install and support your complete audio-visual system, with Epson, Bose Professional, BenQ, ViewSonic, ATEN and TOA.</p>
+   <ul class="assure"><li>Free site consultation</li><li>Itemised proposal in 1 working day</li><li>Installation, training and AMC</li><li>Pan-India support from Mumbai</li></ul>
+   <div class="proof"><div><strong>{years}</strong><span>years in pro AV</span></div><div><strong>{len(BRANDS)}</strong><span>global brands</span></div><div><strong>6</strong><span>services, one partner</span></div></div>
+  </div>
+  <form class="hero-form" data-ubm-form novalidate aria-labelledby="hf-title">
+   <p class="hf-badge">Free · No obligation</p>
+   <h2 id="hf-title">Get your free AV proposal</h2>
+   <p class="hf-sub">Tell us what you need. A UBM specialist replies within one working day.</p>
+   <fieldset class="need"><legend>What do you need?</legend>
+    {"".join(f'<label><input type="radio" name="need" value="{v}"{" checked" if n == 0 else ""}><span>{v}</span></label>' for n, v in enumerate(["Smart classroom", "Video wall", "Boardroom / VC", "Auditorium sound", "PA system", "Something else"]))}
+   </fieldset>
+   <div class="hf-row"><label class="sr" for="hf-name">Your name</label><input id="hf-name" name="name" placeholder="Your name *" required autocomplete="name">
+   <label class="sr" for="hf-phone">Phone or WhatsApp</label><input id="hf-phone" name="phone" type="tel" placeholder="Phone / WhatsApp *" required autocomplete="tel"></div>
+   <div class="hf-row"><label class="sr" for="hf-org">Organisation</label><input id="hf-org" name="company" placeholder="School / company" autocomplete="organization">
+   <label class="sr" for="hf-city">City</label><input id="hf-city" name="city" placeholder="City" autocomplete="address-level2"></div>
+   <button class="btn btn-coral hf-btn" type="submit">Get my free proposal</button>
+   <p class="hf-trust"><span class="lock"></span>Your details stay with UBM. Or call <a href="tel:{SITE["phone_tel"]}">{SITE["phone_display"]}</a></p>
+   <div class="form-ok" role="status">Thank you. Your request is ready to send on WhatsApp, and a specialist will reply within one working day.</div>
+  </form>
  </div>
- <div class="mosaic" aria-hidden="true">
-  <figure class="m1"><img src="{U(IMG["education"], 900)}" alt="" fetchpriority="high"><figcaption>Smart classrooms</figcaption></figure>
-  <figure class="m2"><img src="{U(IMG["boardroom-meeting-room-av-solutions"], 700)}" alt=""><figcaption>Boardrooms</figcaption></figure>
-  <figure class="m3"><img src="{U(IMG["auditorium-av-solutions"], 700)}" alt=""><figcaption>Auditoriums</figcaption></figure>
-  <div class="float f1"><strong>{years} years</strong><span>of pro AV in India</span></div>
-  <div class="float f2"><span class="ok"></span><div><strong>Proposal in 1 working day</strong><span>Free consultation</span></div></div>
- </div>
-</div></section>
+ <div class="hero3-brands"><div class="wrap"><span>Brands we supply and support</span><b>EPSON</b><b>BOSE PROFESSIONAL</b><b>BenQ</b><b>ViewSonic</b><b>ATEN</b><b>TOA</b><b>LIBERTY AV</b></div></div>
+</section>
 
 <section id="about"><div class="wrap partner">
  <div class="partner-media reveal"><img src="{U(IMG["about"], 1100)}" alt="UBM team with clients in a conference room" loading="lazy"><div class="partner-badge"><strong>{years} years</strong><span>of professional AV across India, since 1997</span></div></div>
