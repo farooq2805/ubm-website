@@ -320,12 +320,14 @@ GENERAL_FAQS = [
 
 # ---------------------------------------------------------------- PHOTOGRAPHY (Unsplash licence, free for commercial use)
 def U(pid, w=1400):
+    if pid.startswith("local:"):
+        return f"@@R@@assets/img/{pid[6:]}"
     return f"https://images.unsplash.com/photo-{pid}?auto=format&fit=crop&w={w}&q=70"
 
 HERO_SLIDES = [
     ("1775113586139-b583cc93517f", "Auditorium and event AV", "Speech-clear sound and large-format projection for every seat."),
     ("1577962917302-cd874c4e31d2", "Boardrooms that just work", "One-touch meetings, crystal-clear conferencing, wireless sharing."),
-    ("1709290749293-c6152a187b14", "Smart classrooms", "Interactive learning that teachers actually use, every day."),
+    ("local:smart-classroom-india.jpg", "Smart classrooms", "Interactive learning that teachers actually use, every day."),
 ]
 IMG = {
     "how-to-size-pa-system-for-room": "1645536729479-83c35cb5411d",
@@ -333,17 +335,17 @@ IMG = {
     "how-to-set-up-video-conferencing-meeting-room-india": "1776248783518-400b6d0da64c",
     "best-speakers-for-hall-auditorium-india": "1730739628981-6537b299aea3",
     "home-theatre-setup-guide-india": "1745429523617-0d837856ca35",
-    "do-smart-classrooms-improve-learning-india": "1709290749293-c6152a187b14",
+    "do-smart-classrooms-improve-learning-india": "local:smart-classroom-india.jpg",
     "why-indian-schools-switching-to-interactive-flat-panels": "1692269725911-87697c558be1",
     # solutions
-    "smart-classroom-solutions": "1722573783625-eceb04251036",
+    "smart-classroom-solutions": "local:smart-classroom-india.jpg",
     "boardroom-meeting-room-av-solutions": "1577962917302-cd874c4e31d2",
     "video-wall-solutions": "1712619221708-c50fbf2d6fcf",
     "auditorium-av-solutions": "1775113586139-b583cc93517f",
     "av-over-ip-media-distribution": "1783461241044-8e8bb7e66808",
     "public-address-pa-systems": "1561314105-e6ac04c2984a",
     # industries
-    "education": "1709290749293-c6152a187b14",
+    "education": "local:interactive-panel-training-india.jpg",
     "corporate": "1756885465373-bce82fd5c944",
     "hospitality": "1770387688486-397ff1afdb2c",
     "places-of-worship": "1760770537788-9ee9aa917372",  # people praying inside a Hindu temple (India)
@@ -367,7 +369,7 @@ IMG = {
     "cta": "1734120113511-3fc3daa90633",
     # blog posts
     "smart-classroom-setup-guide-india": "1719159381916-062fa9f435a6",
-    "interactive-flat-panel-vs-projector": "1722573783625-eceb04251036",
+    "interactive-flat-panel-vs-projector": "local:interactive-panel-training-india.jpg",
     "what-is-av-over-ip": "1525022404438-91321710652d",
     "boardroom-av-video-conferencing-checklist": "1577962917302-cd874c4e31d2",
     "auditorium-sound-system-design-guide": "1775113586139-b583cc93517f",

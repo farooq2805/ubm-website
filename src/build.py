@@ -202,6 +202,7 @@ def page(path, title, desc, body, active="", schemas=(), depth=None, priority="0
     if path == "":
         dest = OUT / "index.html"
     dest.parent.mkdir(parents=True, exist_ok=True)
+    doc = doc.replace("@@R@@", r)
     dest.write_text(doc, encoding="utf-8")
     if path != "404.html":
         pages.append((path, priority))
@@ -342,6 +343,15 @@ STAT_IC = {
 }
 
 
+SOLVES = {
+    "smart-classroom-solutions": "The problem: teachers lose class time to cables, calibration and screens that wash out in daylight.",
+    "video-wall-solutions": "The problem: lobbies and control rooms need one bright, seamless canvas that runs all day without fuss.",
+    "boardroom-meeting-room-av-solutions": "The problem: meetings start late, remote colleagues can't hear, and glass rooms echo.",
+    "auditorium-av-solutions": "The problem: the front rows are deafened while the back rows can't follow the speech.",
+    "av-over-ip-media-distribution": "The problem: more sources and screens every year, and cabling that can't scale with them.",
+    "public-address-pa-systems": "The problem: announcements nobody understands, and no way to reach just the right zone.",
+}
+
 VW_KEYS = ["auditorium-av-solutions", "video-wall-solutions", "education", "boardroom-meeting-room-av-solutions", "stadiums-sports-venues", "smart-classroom-solutions", "hospitality", "corporate", "places-of-worship", "retail", "home-theatre", "av-over-ip-media-distribution", "public-address-pa-systems", "cta", "about"]
 
 
@@ -399,9 +409,25 @@ def build_home():
   <div class="hero-actions" style="margin-top:0"><a class="btn btn-blue" href="about-us/">Read more about UBM</a><a class="btn btn-ghost" href="contact/#enquiry">Consult now</a></div></div>
 </div></section>
 
-<section class="alt"><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">What we deliver</div><h2>We deliver turnkey AV solutions</h2><p class="lead">From a single huddle room to an entire campus, designed around the people who use it and the people who maintain it.</p></div><a class="btn btn-ghost" href="solutions/">All solutions →</a></div>
- <div class="grid g3 m-swipe">{sols}</div>
+<section class="showcase" id="solutions"><div class="wrap">
+ <div class="sec-head"><div><p class="kicker">What we deliver</p><h2>Turnkey AV solutions, designed for the way you work</h2><p class="lead">Six solution families, each designed, supplied, installed and supported by one accountable team.</p></div><a class="btn btn-ghost" href="solutions/">All solutions</a></div>
+ <div class="sc" data-sc>
+  <div class="sc-tabs" role="tablist" aria-label="Solutions">{"".join(f'<button type="button" role="tab" aria-selected="{"true" if n == 0 else "false"}" data-i="{n}"><span class="sc-ic">{ICONS[s["icon"]]}</span><span>{e(s["name"])}</span></button>' for n, s in enumerate(SOLUTIONS))}</div>
+  <div class="sc-stage">
+   {"".join(f'''<article class="sc-slide{" on" if n == 0 else ""}" role="tabpanel" data-i="{n}">
+    <div class="sc-photo"><img src="{U(IMG[s["slug"]], 1300)}" alt="{e(s["name"])} by UBM" loading="{"eager" if n == 0 else "lazy"}"><span class="sc-count">{n + 1:02d} / {len(SOLUTIONS):02d}</span></div>
+    <div class="sc-body">
+     <h3>{e(s["name"])}</h3>
+     <p class="sc-problem">{e(SOLVES[s["slug"]])}</p>
+     <p class="sc-intro">{e(s["intro"])}</p>
+     <ul class="sc-inc">{"".join(f"<li>{e(x)}</li>" for x in s["includes"][:4])}</ul>
+     <p class="sc-brands">{" · ".join(e(BR[x]["name"]) for x in s["brands"] if x in BR)}</p>
+     <div class="sc-cta"><a class="btn btn-coral" href="contact/?solution={s["slug"]}#enquiry">Get a proposal</a><a class="btn btn-ghost" href="solutions/{s["slug"]}/">See what's included</a></div>
+    </div>
+   </article>''' for n, s in enumerate(SOLUTIONS))}
+   <div class="sc-nav"><button type="button" class="sc-prev" aria-label="Previous solution">‹</button><div class="sc-dots">{"".join(f'<i data-i="{n}"{" class=on" if n == 0 else ""}></i>' for n in range(len(SOLUTIONS)))}</div><button type="button" class="sc-next" aria-label="Next solution">›</button></div>
+  </div>
+ </div>
 </div></section>
 
 <section class="numbers" aria-label="UBM in numbers"><div class="wrap">
@@ -543,7 +569,8 @@ def build_industries():
         stats = "".join(f'''<div class="fact"><strong>{e(v)}</strong><p>{e(l)}</p><a href="{e(u)}" target="_blank" rel="noopener nofollow">Source: {e(src)}</a></div>''' if u else f'''<div class="fact"><strong>{e(v)}</strong><p>{e(l)}</p><span>Source: {e(src)}</span></div>''' for v, l, src, u in st["stats"])
         pains = "".join(f'<div class="pain"><h3>{e(h)}</h3><p>{e(t)}</p></div>' for h, t in st["pains"])
         fixes = "".join(f'<div class="fix"><span class="fix-n">{n + 1}</span><div><h3>{e(h)}</h3><p>{e(t)}</p></div></div>' for n, (h, t) in enumerate(st["fixes"]))
-        steps = "".join(f"<li>{e(x)}</li>" for x in st["project"])
+        step_ic = ["consult", "design", "install", "train", "maintain"]
+        steps = "".join(f'<li><span class="j-ic">{ICONS[step_ic[n % 5]]}</span><span class="j-n">Step {n + 1}</span><b>{e(x)}</b></li>' for n, x in enumerate(st["project"]))
         faqs = st["faqs"] + i["faqs"]
         topic = "AV for " + i["name"].lower()
         body = page_hero(r, [("Industries", "industries/"), (i["name"], path)], i["h1"], i["intro"], i["name"]) + f'''
@@ -558,7 +585,7 @@ def build_industries():
 <section><div class="wrap">
  <div class="sec-head"><div><p class="kicker">How UBM fixes it</p><h2>What changes when UBM designs your space</h2></div></div>
  <div class="fixes">{fixes}</div>
- <div class="journey"><h3>How a UBM project runs</h3><ol>{steps}</ol></div>
+ <div class="journey"><h3>How a UBM project runs</h3><ol class="j-line">{steps}</ol></div>
 </div></section>
 <section class="alt"><div class="wrap"><div class="sec-head"><div><p class="kicker">Solutions</p><h2>Solutions for {e(i["name"].lower())}</h2></div></div><div class="grid g2 m-swipe">{sols}</div></div></section>
 <section><div class="wrap">{faq_block(faqs)}</div></section>{lead_section(r, topic)}'''
@@ -674,7 +701,7 @@ def build_tools():
     blocks = "".join(f'''<section class="calc" id="{cid}" role="tabpanel"{" hidden" if n else ""}>
  <div class="calc-grid">
   <form class="calc-form" data-calc="{k}" onsubmit="return false"><h2>{e(h)}</h2><p class="muted">{e(q)}</p>{form}</form>
-  <div class="calc-result"><p class="kicker">Your result</p><div class="res-list" id="{k}-out" aria-live="polite"></div>
+  <div class="calc-result"><p class="kicker">Your result</p><div class="viz" id="{k}-viz" aria-hidden="true"></div><div class="res-list" id="{k}-out" aria-live="polite"></div>
    <a class="btn btn-coral" id="{k}-cta" href="{r}contact/#enquiry">Get a proposal based on this</a>
    <p class="calc-note">Starting-point estimate based on standard industry rules. A UBM specialist will confirm it for your room.</p></div>
  </div>

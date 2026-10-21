@@ -185,3 +185,28 @@
     t.classList.add("swap"); setTimeout(function () { img.src = next; t.classList.remove("swap"); }, 450); n++;
   }, 1800);
 })();
+(function () {
+  // Solutions showcase slider: tabs, arrows, dots, swipe, auto-advance (paused on hover / reduced motion)
+  var sc = document.querySelector("[data-sc]"); if (!sc) return;
+  var slides = sc.querySelectorAll(".sc-slide"), tabs = sc.querySelectorAll(".sc-tabs button"), dots = sc.querySelectorAll(".sc-dots i"), i = 0, t;
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function go(n, user) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle("on", k === i); });
+    tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); if (k === i && user) b.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); });
+    dots.forEach(function (d, k) { d.classList.toggle("on", k === i); });
+    tabs[i].style.animation = "none"; void tabs[i].offsetWidth; tabs[i].style.animation = "";
+    if (user) restart();
+  }
+  function restart() { clearInterval(t); if (!reduce) t = setInterval(function () { if (!sc.classList.contains("paused")) go(i + 1); }, 6000); }
+  tabs.forEach(function (b, k) { b.addEventListener("click", function () { go(k, true); }); });
+  dots.forEach(function (d, k) { d.addEventListener("click", function () { go(k, true); }); });
+  sc.querySelector(".sc-prev").addEventListener("click", function () { go(i - 1, true); });
+  sc.querySelector(".sc-next").addEventListener("click", function () { go(i + 1, true); });
+  sc.addEventListener("mouseenter", function () { sc.classList.add("paused"); });
+  sc.addEventListener("mouseleave", function () { sc.classList.remove("paused"); });
+  var x0 = null, stage = sc.querySelector(".sc-stage");
+  stage.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener("touchend", function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1), true); x0 = null; });
+  restart();
+})();
